@@ -31,14 +31,15 @@
 <meta property="og:site_name" content="Guoyi&#39;s Blog">
 <meta property="og:description" content="The basic pattern of binary tree is preorder, inorder and postorder.Inorder to write the recursive code, we need to set the signature of the function at first. Understand what should do for current no">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://res.cloudinary.com/dqtwypf2t/image/upload/v1606886760/binary_tree_PreOrder_traversal_in_Java_e2qrby.png">
 <meta property="og:image" content="https://res.cloudinary.com/dqtwypf2t/image/upload/v1604538348/WeChat_Image_20201104200528_ya6msr.png">
 <meta property="og:image" content="https://res.cloudinary.com/dqtwypf2t/image/upload/v1604538966/1604538899_kpvevh.png">
 <meta property="article:published_time" content="2020-12-02T23:51:53.000Z">
-<meta property="article:modified_time" content="2020-12-03T00:09:00.923Z">
+<meta property="article:modified_time" content="2020-12-03T00:15:40.646Z">
 <meta property="article:author" content="Guoyi Wang">
 <meta property="article:tag" content="common">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://res.cloudinary.com/dqtwypf2t/image/upload/v1604538348/WeChat_Image_20201104200528_ya6msr.png">
+<meta name="twitter:image" content="https://res.cloudinary.com/dqtwypf2t/image/upload/v1606886760/binary_tree_PreOrder_traversal_in_Java_e2qrby.png">
 
 
 <link rel="canonical" href="http://example.com/2020/12/02/Binary-Tree/">
@@ -276,7 +277,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2020-12-02 18:51:53 / Modified: 19:09:00" itemprop="dateCreated datePublished" datetime="2020-12-02T18:51:53-05:00">2020-12-02</time>
+      <time title="Created: 2020-12-02 18:51:53 / Modified: 19:15:40" itemprop="dateCreated datePublished" datetime="2020-12-02T18:51:53-05:00">2020-12-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -304,7 +305,7 @@
     <div class="post-body" itemprop="articleBody">
         <p>The basic pattern of binary tree is preorder, inorder and postorder.<br>Inorder to write the recursive code, we need to set the signature of the function at first. Understand what should do for current node</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">void traverse(TreeNode root) &#123;</span><br><span class="line">    //Preorder</span><br><span class="line">    traverse(root.left)</span><br><span class="line">    //Inorder</span><br><span class="line">    traverse(root.right)</span><br><span class="line">    //Postorder</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>![Pattern of different order]<a target="_blank" rel="noopener" href="https://res.cloudinary.com/dqtwypf2t/image/upload/v1606886760/binary_tree_PreOrder_traversal_in_Java_e2qrby.png">https://res.cloudinary.com/dqtwypf2t/image/upload/v1606886760/binary_tree_PreOrder_traversal_in_Java_e2qrby.png</a></p>
+<p><img src="https://res.cloudinary.com/dqtwypf2t/image/upload/v1606886760/binary_tree_PreOrder_traversal_in_Java_e2qrby.png" alt="Pattern of different order"></p>
 <h2 id="Preorder"><a href="#Preorder" class="headerlink" title="Preorder"></a>Preorder</h2><p>Create a tree based on an array, choose preorder.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">void traverse(TreeNode root) &#123;</span><br><span class="line">    //Preorder code will be used <span class="keyword">in</span> the root at first</span><br><span class="line">    traverse(root.left)</span><br><span class="line">    traverse(root.right)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="Example-1-Quick-Sort"><a href="#Example-1-Quick-Sort" class="headerlink" title="Example 1 - Quick Sort"></a>Example 1 - Quick Sort</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">void sort(int[] nums, int lo, int hi) &#123;</span><br><span class="line">    /****** Preorder Position ******/</span><br><span class="line">    // create p, nums[lo..p-1]&lt;nums[p], nums[p+1..hi]&gt;nums[p]</span><br><span class="line">    int p = partition(nums, lo, hi);</span><br><span class="line">    /************************/</span><br><span class="line"></span><br><span class="line">    sort(nums, lo, p - 1);</span><br><span class="line">    sort(nums, p + 1, hi);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
