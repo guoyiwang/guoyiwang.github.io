@@ -24,20 +24,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
   </script>
 
-  <meta name="description" content="整数二分 有单调性的，一定可以二分，但是可以二分的题目，不一定要有单调性 本质： 边界 存在一个性质，把array分成左右两份 根据这个性质，找到左半边的右边界，和右半边的左边界       模板一123456789&#x2F;&#x2F; 区间 [l, r] 被划分成了 [l, mid] 和 [mid + 1, r] 时使用 int bearch_1(int l, int r)&amp;#123;     while(l">
+  <meta name="description" content="整数二分 有单调性的，一定可以二分，但是可以二分的题目，不一定要有单调性 本质： 边界 存在一个性质，把array分成左右两份 根据这个性质，找到左半边的右边界，和右半边的左边界, 即当前边界未知，要找到边界 找绿色的左边界 ，mid &#x3D; (l+r)&#x2F;2, if (check(mid)) True: 说明左边界还可以扩大， answer is in [l, mid], 即 r &#x3D; mid Fals">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Basic Algorithm - Binary Search">
 <meta property="og:url" content="http://example.com/2021/01/27/Basic-Algorithm-Binary-Search/index.html">
 <meta property="og:site_name" content="Guoyi&#39;s Blog">
-<meta property="og:description" content="整数二分 有单调性的，一定可以二分，但是可以二分的题目，不一定要有单调性 本质： 边界 存在一个性质，把array分成左右两份 根据这个性质，找到左半边的右边界，和右半边的左边界       模板一123456789&#x2F;&#x2F; 区间 [l, r] 被划分成了 [l, mid] 和 [mid + 1, r] 时使用 int bearch_1(int l, int r)&amp;#123;     while(l">
+<meta property="og:description" content="整数二分 有单调性的，一定可以二分，但是可以二分的题目，不一定要有单调性 本质： 边界 存在一个性质，把array分成左右两份 根据这个性质，找到左半边的右边界，和右半边的左边界, 即当前边界未知，要找到边界 找绿色的左边界 ，mid &#x3D; (l+r)&#x2F;2, if (check(mid)) True: 说明左边界还可以扩大， answer is in [l, mid], 即 r &#x3D; mid Fals">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/public/images/binary_integer.png">
+<meta property="og:image" content="http://example.com/images/binary_integer.png">
 <meta property="article:published_time" content="2021-01-27T23:51:53.000Z">
-<meta property="article:modified_time" content="2021-01-30T03:36:48.486Z">
+<meta property="article:modified_time" content="2021-01-30T03:56:32.635Z">
 <meta property="article:author" content="Guoyi Wang">
 <meta property="article:tag" content="Basic-Algorithm">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/public/images/binary_integer.png">
+<meta name="twitter:image" content="http://example.com/images/binary_integer.png">
 
 
 <link rel="canonical" href="http://example.com/2021/01/27/Basic-Algorithm-Binary-Search/">
@@ -281,7 +281,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-01-29 22:36:48" itemprop="dateModified" datetime="2021-01-29T22:36:48-05:00">2021-01-29</time>
+        <time title="Modified: 2021-01-29 22:56:32" itemprop="dateModified" datetime="2021-01-29T22:56:32-05:00">2021-01-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -307,8 +307,22 @@
 <li>有单调性的，一定可以二分，但是可以二分的题目，不一定要有单调性</li>
 <li>本质： 边界<ul>
 <li>存在一个性质，把array分成左右两份</li>
-<li>根据这个性质，找到左半边的右边界，和右半边的左边界</li>
-<li><img src="/public/images/binary_integer.png" width="600" height="100">
+<li>根据这个性质，找到左半边的右边界，和右半边的左边界, 即当前边界未知，要找到边界<ul>
+<li>找绿色的左边界 ，mid = (l+r)/2, if (check(mid))<ul>
+<li>True: 说明左边界还可以扩大， answer is in [l, mid], 即 r = mid</li>
+<li>False: 说明左边界要缩小，answer is in [mid + 1, r], 即 l = mid + 1</li>
+<li>模板一</li>
+</ul>
+</li>
+<li>找红色的右边界 ，mid = (l+r)/2, if (check(mid))<ul>
+<li>True: 说明右边界还可以扩大， answer is in [mid, r]</li>
+<li>False: 说明右边界要缩小，answer is in [l, mid - 1]</li>
+<li>模板二</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><img src="/images/binary_integer.png" width="600" height="100">
 
 </li>
 </ul>

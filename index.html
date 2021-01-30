@@ -397,7 +397,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-01-29 22:36:48" itemprop="dateModified" datetime="2021-01-29T22:36:48-05:00">2021-01-29</time>
+        <time title="Modified: 2021-01-29 22:56:32" itemprop="dateModified" datetime="2021-01-29T22:56:32-05:00">2021-01-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -423,8 +423,22 @@
 <li>有单调性的，一定可以二分，但是可以二分的题目，不一定要有单调性</li>
 <li>本质： 边界<ul>
 <li>存在一个性质，把array分成左右两份</li>
-<li>根据这个性质，找到左半边的右边界，和右半边的左边界</li>
-<li><img src="/public/images/binary_integer.png" width="600" height="100">
+<li>根据这个性质，找到左半边的右边界，和右半边的左边界, 即当前边界未知，要找到边界<ul>
+<li>找绿色的左边界 ，mid = (l+r)/2, if (check(mid))<ul>
+<li>True: 说明左边界还可以扩大， answer is in [l, mid], 即 r = mid</li>
+<li>False: 说明左边界要缩小，answer is in [mid + 1, r], 即 l = mid + 1</li>
+<li>模板一</li>
+</ul>
+</li>
+<li>找红色的右边界 ，mid = (l+r)/2, if (check(mid))<ul>
+<li>True: 说明右边界还可以扩大， answer is in [mid, r]</li>
+<li>False: 说明右边界要缩小，answer is in [l, mid - 1]</li>
+<li>模板二</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><img src="/images/binary_integer.png" width="600" height="100">
 
 </li>
 </ul>
