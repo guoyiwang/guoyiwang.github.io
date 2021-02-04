@@ -192,7 +192,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -233,6 +233,71 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/03/Basic-Algorithm-High-Precision/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Guoyi Wang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guoyi's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/03/Basic-Algorithm-High-Precision/" class="post-title-link" itemprop="url">Basic-Algorithm-High-Precision</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-02-03 22:32:22 / Modified: 22:34:01" itemprop="dateCreated datePublished" datetime="2021-02-03T22:32:22-05:00">2021-02-03</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -397,7 +462,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-01-29 22:56:32" itemprop="dateModified" datetime="2021-01-29T22:56:32-05:00">2021-01-29</time>
+        <time title="Modified: 2021-02-03 22:41:01" itemprop="dateModified" datetime="2021-02-03T22:41:01-05:00">2021-02-03</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -423,30 +488,42 @@
 <li>有单调性的，一定可以二分，但是可以二分的题目，不一定要有单调性</li>
 <li>本质： 边界<ul>
 <li>存在一个性质，把array分成左右两份</li>
-<li>根据这个性质，找到左半边的右边界，和右半边的左边界, 即当前边界未知，要找到边界<ul>
-<li>找绿色的左边界 ，mid = (l+r)/2, if (check(mid))<ul>
-<li>True: 说明左边界还可以扩大， answer is in [l, mid], 即 r = mid</li>
-<li>False: 说明左边界要缩小，answer is in [mid + 1, r], 即 l = mid + 1</li>
-<li>模板一</li>
+<li>根据这个性质，找到左半边的右边界，和右半边的左边界, 即当前边界未知，要找到边界</li>
+<li><img src="/.com//binary_integer.png" width="600" height="100">
+- 找绿色的左边界 ，mid = (l+r)/2, if (check(mid))
+  - True: 说明左边界还可以左移， answer is in [l, mid], 即 r = mid
+  - False: 说明左边界要右移，answer is in [mid + 1, r], 即 l = mid + 1
+  - 模板一
+- 找红色的右边界 ，mid = ( l + r + **1** )/2, if (check(mid))
+  - True: 说明右边界还可以右移， answer is in [mid, r], 即 l = mid
+  - False: 说明右边界要左移，answer is in [l, mid - 1], 即 r = mid - 1
+  - 模板二
+  - if mid != ( l + r + **1** )/2, when l = r - 1, mid = l
+    - True: in [l, r]
+    - False: in [l, l - 1]</li>
 </ul>
 </li>
-<li>找红色的右边界 ，mid = (l+r)/2, if (check(mid))<ul>
-<li>True: 说明右边界还可以扩大， answer is in [mid, r]</li>
-<li>False: 说明右边界要缩小，answer is in [l, mid - 1]</li>
-<li>模板二</li>
+<li>写check function</li>
 </ul>
-</li>
+<h3 id="模板一"><a href="#模板一" class="headerlink" title="模板一"></a>模板一</h3><ul>
+<li>找左边界</li>
+<li>返回值是第一个满足check的数</li>
+<li>如果没有</li>
 </ul>
-</li>
-<li><img src="/images/binary_integer.png" width="600" height="100">
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 区间 [l, r] 被划分成了 [l, mid] 和 [mid + 1, r] 时使用</span></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">bearch_1</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">     <span class="keyword">while</span>(l &lt; r )&#123;</span><br><span class="line">         <span class="keyword">int</span> mid = ( l + r )/<span class="number">2</span>;</span><br><span class="line">         <span class="keyword">if</span> (check(mid)) r = mid <span class="comment">// check()判断mid是否满足性质</span></span><br><span class="line">         <span class="keyword">else</span> l = mid + <span class="number">1</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> l;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
-</li>
+<h3 id="模板二"><a href="#模板二" class="headerlink" title="模板二"></a>模板二</h3><ul>
+<li>找右边界</li>
+<li>返回值是最后一个满足check的数</li>
+<li>如果没有</li>
 </ul>
-</li>
-</ul>
-<h3 id="模板一"><a href="#模板一" class="headerlink" title="模板一"></a>模板一</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 区间 [l, r] 被划分成了 [l, mid] 和 [mid + 1, r] 时使用</span></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">bearch_1</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">     <span class="keyword">while</span>(l &lt; r )&#123;</span><br><span class="line">         <span class="keyword">int</span> mid = ( l + r )/<span class="number">2</span>;</span><br><span class="line">         <span class="keyword">if</span> (check(mid)) r = mid <span class="comment">// check()判断mid是否满足性质</span></span><br><span class="line">         <span class="keyword">else</span> l = mid + <span class="number">1</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> l;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 区间 [l, r] 被划分成了 [l, mid - 1] 和 [mid, r] 时使用</span></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">bearch_2</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">     <span class="keyword">while</span>(l &lt; r )&#123;</span><br><span class="line">         <span class="keyword">int</span> mid = ( l + r + <span class="number">1</span> )/<span class="number">2</span>;</span><br><span class="line">         <span class="keyword">if</span> (check(mid)) l = mid <span class="comment">// check()判断mid是否满足性质</span></span><br><span class="line">         <span class="keyword">else</span> r = mid - <span class="number">1</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> l;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="模板二"><a href="#模板二" class="headerlink" title="模板二"></a>模板二</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 区间 [l, r] 被划分成了 [l, mid - 1] 和 [mid, r] 时使用</span></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">bearch_2</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">     <span class="keyword">while</span>(l &lt; r )&#123;</span><br><span class="line">         <span class="keyword">int</span> mid = ( l + r + <span class="number">1</span> )/<span class="number">2</span>;</span><br><span class="line">         <span class="keyword">if</span> (check(mid)) r = mid <span class="comment">// check()判断mid是否满足性质</span></span><br><span class="line">         <span class="keyword">else</span> l = mid - <span class="number">1</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> l;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Question-1"><a href="#Question-1" class="headerlink" title="Question 1"></a>Question 1</h3><p>[1,2,2,3,3,4] 找到 3 的起始坐标和终止坐标</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">findStartEnd</span><span class="params">(<span class="keyword">int</span> target)</span></span>&#123;</span><br><span class="line">    <span class="comment">// find the start index of target </span></span><br><span class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = n - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> start = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(l &lt; r) &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = ( l + r )/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(q[mid] &gt;= target) r = mid;</span><br><span class="line">        <span class="keyword">else</span> l = mid + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (q[l] != target) <span class="keyword">return</span> <span class="string">&quot;-1 -1&quot;</span>; <span class="comment">// if l isn&#x27;t the target we look for, it means the target isn&#x27;t in this array</span></span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">// find the end index of target </span></span><br><span class="line">        start = l; <span class="comment">// save the start index in start</span></span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = n - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(l &lt; r) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = ( l + r + <span class="number">1</span> )/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(q[mid] &lt;= target) l = mid;</span><br><span class="line">            <span class="keyword">else</span> r = mid - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> start + <span class="string">&quot; &quot;</span> + l;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="Question-2"><a href="#Question-2" class="headerlink" title="Question 2"></a>Question 2</h3><p>找到数的三次方跟，可以是负数，尤其注意-0.001 的三次方跟是-0.1</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">findRoot</span><span class="params">(<span class="keyword">double</span> target)</span></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> l = -<span class="number">10000</span>, r = <span class="number">10000</span>;</span><br><span class="line">    <span class="keyword">while</span>( r - l &gt; <span class="number">1e-8</span>)&#123;</span><br><span class="line">        <span class="keyword">double</span> mid = (l + r)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (mid*mid*mid &gt;= target)&#123;</span><br><span class="line">            r = mid;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            l = mid; <span class="comment">// l = mid+1 may miss the correct answer</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> l; <span class="comment">// System.out.println(String.format(&quot;%.6f&quot;, l));</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
