@@ -192,12 +192,12 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">categories</span>
       </div>
       <div class="site-state-item site-state-tags">
@@ -241,6 +241,130 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/18/JavaScript-CheetSheet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Guoyi Wang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guoyi's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/18/JavaScript-CheetSheet/" class="post-title-link" itemprop="url">JavaScript-CheetSheet</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-02-18 08:03:38 / Modified: 09:08:48" itemprop="dateCreated datePublished" datetime="2021-02-18T08:03:38-05:00">2021-02-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="JavaScript-CheetSheet"><a href="#JavaScript-CheetSheet" class="headerlink" title="JavaScript CheetSheet"></a>JavaScript CheetSheet</h1><h2 id="Grammar"><a href="#Grammar" class="headerlink" title="Grammar"></a>Grammar</h2><h3 id="Different-between-var-and-let"><a href="#Different-between-var-and-let" class="headerlink" title="Different between var and let"></a>Different between var and let</h3><h4 id="Main-difference-is-scoping-rules"><a href="#Main-difference-is-scoping-rules" class="headerlink" title="Main difference is scoping rules"></a>Main difference is <strong>scoping rules</strong></h4><ul>
+<li><p><font color="#00FF00" size="6px">var</font>: are scoped to the immediate function body (hence the function scope)</p>
+</li>
+<li><p><font color="#FF0000" size="6px">let</font>: are scoped to the immediate enclosing block denoted by <strong>{ }</strong> (hence the block scope)</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">var</span> foo = <span class="string">&quot;Foo&quot;</span>;</span><br><span class="line"><span class="keyword">let</span> bar = <span class="string">&quot;Bar&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(foo, bar); <span class="comment">// Foo Bar</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> moo = <span class="string">&quot;Mooo&quot;</span></span><br><span class="line">    <span class="keyword">let</span> baz = <span class="string">&quot;Bazz&quot;</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(moo, baz); <span class="comment">// Mooo Bazz</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(moo); <span class="comment">// Mooo</span></span><br><span class="line"><span class="built_in">console</span>.log(baz); <span class="comment">// ReferenceError</span></span><br><span class="line">&#125;</span><br><span class="line">run();</span><br></pre></td></tr></table></figure></li>
+<li><p><font color="#00FF00" size="6px">var</font>: i is reused in the first loop, end as 3. The variable i, within each of your anonymous functions(funcs<a href="">j</a> in the second for loop), is bound to the same variable outside of the function.</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> funcs = [];</span><br><span class="line"><span class="comment">// let&#x27;s create 3 functions</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">    <span class="comment">// and store them in funcs</span></span><br><span class="line">    funcs[i] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// each should log its value.</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&quot;My value: &quot;</span> + i);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; <span class="number">3</span>; j++) &#123;</span><br><span class="line"><span class="comment">// and now let&#x27;s run each one to see</span></span><br><span class="line">    funcs[j]();</span><br><span class="line">    <span class="comment">// out put</span></span><br><span class="line">    <span class="comment">// My value: 3</span></span><br><span class="line">    <span class="comment">// My value: 3</span></span><br><span class="line">    <span class="comment">// My value: 3</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><font color="#FF0000" size="6px">let</font>: In a loop with a let-based index, each iteration through the loop will have a new variable i with loop scope</p>
+<ul>
+<li>Only work in Edge14, IE9-IE11 and Edge prior to Edge 14 support let but they don’t create a new i each time, so all the functions above would log 3</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">  funcs[i] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&quot;My value: &quot;</span> + i);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// out put</span></span><br><span class="line"><span class="comment">// My value: 0</span></span><br><span class="line"><span class="comment">// My value: 1</span></span><br><span class="line"><span class="comment">// My value: 2</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="Hoisting"><a href="#Hoisting" class="headerlink" title="Hoisting"></a>Hoisting</h4><ul>
+<li><p>JavaScript is an Interpreted language. It helps to think that the JS engine goes thru your code line by line twice.</p>
+<ul>
+<li>First time, the engine goes thru the code and does the <strong>hoisting</strong> and some other things (like adding the missing semicolons).<ul>
+<li><strong>hoisting</strong> is the process of setting up of memory space for our variables and functions.</li>
+<li>The values of variables are <strong>not stored</strong></li>
+<li>The functions are <strong>stored entirely along</strong> with their definitions</li>
+</ul>
+</li>
+<li>The second time it actually runs the code.</li>
+</ul>
+</li>
+<li><p><font color="#00FF00" size="6px">var</font>: The output is “undefined”</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Some other code</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>for function: The output is “b called!”</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">b();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;b called!&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><font color="#FF0000" size="6px">let</font>: new ES6 features</p>
+<ul>
+<li>ES6 introduced two new keywords <strong>let</strong> and <strong>const</strong> for declaring variables</li>
+<li>Variables declared using let and const are also hoisted, but the variables are not initialized with undefined.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"><span class="comment">// Reference Error</span></span><br><span class="line"><span class="comment">// since &quot;a&quot; was used before it declared which is illegal for &#x27;let&#x27; variables </span></span><br><span class="line"><span class="keyword">let</span> a = <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="Creating-global-object-property"><a href="#Creating-global-object-property" class="headerlink" title="Creating global object property"></a>Creating global object property</h4><ul>
+<li><p><font color="#00FF00" size="6px">var</font>: create a property on the global object: window</p>
+</li>
+<li><p><font color="#FF0000" size="6px">let</font>: doesn’t create a property on the global object: window</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="string">&quot;Foo&quot;</span>;  <span class="comment">// globally scoped</span></span><br><span class="line"><span class="keyword">let</span> bar = <span class="string">&quot;Bar&quot;</span>; <span class="comment">// globally scoped</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.foo); <span class="comment">// Foo</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.bar); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/10/React-CheetSheet/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -273,7 +397,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-02-17 23:06:15" itemprop="dateModified" datetime="2021-02-17T23:06:15-05:00">2021-02-17</time>
+        <time title="Modified: 2021-02-17 23:33:14" itemprop="dateModified" datetime="2021-02-17T23:33:14-05:00">2021-02-17</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -394,8 +518,14 @@
 </ul>
 <h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
 <li>Ref in node just like id</li>
+<li>Refs provide a way to access <strong>DOM nodes</strong> or <strong>React elements</strong>(an instance of a React component) created in the render method</li>
 </ul>
-<h2 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h2><img src="../images/redux.png" width="600" height="300">
+<h3 id="Using-Ref-like-id-Not-be-recommended-anymore"><a href="#Using-Ref-like-id-Not-be-recommended-anymore" class="headerlink" title="Using Ref like id(Not be recommended anymore)"></a>Using Ref like id(Not be recommended anymore)</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建组件</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">  <span class="comment">//展示左侧输入框的数据</span></span><br><span class="line">  showData = <span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;input1&#125; = <span class="built_in">this</span>.refs <span class="comment">// input1 is the DOM node</span></span><br><span class="line">    alert(input1.value)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//展示右侧输入框的数据</span></span><br><span class="line">  showData2 = <span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;input2&#125; = <span class="built_in">this</span>.refs</span><br><span class="line">    alert(input2.value)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="title">render</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span>(</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;input ref=<span class="string">&quot;input1&quot;</span> type=<span class="string">&quot;text&quot;</span> placeholder=<span class="string">&quot;点击按钮提示数据&quot;</span>/&gt;&amp;nbsp;</span><br><span class="line">        &lt;button onClick=&#123;<span class="built_in">this</span>.showData&#125;&gt;点我提示左侧的数据&lt;/button&gt;&amp;nbsp;</span><br><span class="line">        &lt;input ref=<span class="string">&quot;input2&quot;</span> onBlur=&#123;<span class="built_in">this</span>.showData2&#125; type=<span class="string">&quot;text&quot;</span> placeholder=<span class="string">&quot;失去焦点提示数据&quot;</span>/&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//渲染组件到页面</span></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">Demo</span> <span class="attr">a</span>=<span class="string">&quot;1&quot;</span> <span class="attr">b</span>=<span class="string">&quot;2&quot;</span>/&gt;</span></span>,<span class="built_in">document</span>.getElementById(<span class="string">&#x27;test&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<h3 id="Callback-Refs"><a href="#Callback-Refs" class="headerlink" title="Callback Refs"></a>Callback Refs</h3><ul>
+<li><h2 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h2></li>
+</ul>
+<img src="../images/redux.png" width="600" height="300">
 
       
     </div>
