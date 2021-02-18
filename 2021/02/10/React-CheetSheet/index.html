@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="React Cheet SheetVirtual DomTwo way to create virtual DOM Only JS  const VDOM &#x3D; React.createElement(‘xx’,{id:’xx’},’xx’)  JSX - JavaScript XML(Extensible Markup Language)    var ele &#x3D; &lt;h1&gt;Hello">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React_CheetSheet">
+<meta property="og:url" content="http://example.com/2021/02/10/React-CheetSheet/index.html">
+<meta property="og:site_name" content="Guoyi&#39;s Blog">
+<meta property="og:description" content="React Cheet SheetVirtual DomTwo way to create virtual DOM Only JS  const VDOM &#x3D; React.createElement(‘xx’,{id:’xx’},’xx’)  JSX - JavaScript XML(Extensible Markup Language)    var ele &#x3D; &lt;h1&gt;Hello">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/image/redux.png">
+<meta property="article:published_time" content="2021-02-10T20:54:13.000Z">
+<meta property="article:modified_time" content="2021-02-18T02:57:43.007Z">
+<meta property="article:author" content="Guoyi Wang">
+<meta property="article:tag" content="Technology">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/image/redux.png">
+
+
+<link rel="canonical" href="http://example.com/2021/02/10/React-CheetSheet/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>React_CheetSheet | Guoyi's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Guoyi's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="https://guoyiwang.github.io/Resume/" rel="noopener" target="_blank"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#React-Cheet-Sheet"><span class="nav-number">1.</span> <span class="nav-text">React Cheet Sheet</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Virtual-Dom"><span class="nav-number">1.1.</span> <span class="nav-text">Virtual Dom</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Two-way-to-create-virtual-DOM"><span class="nav-number">1.1.1.</span> <span class="nav-text">Two way to create virtual DOM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E7%82%B9"><span class="nav-number">1.1.2.</span> <span class="nav-text">优点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#State"><span class="nav-number">1.2.</span> <span class="nav-text">State</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%80%9Cthis%E2%80%9D"><span class="nav-number">1.2.1.</span> <span class="nav-text">“this”</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ref"><span class="nav-number">1.3.</span> <span class="nav-text">Ref</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redux"><span class="nav-number">1.4.</span> <span class="nav-text">Redux</span></a></li></ol></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Guoyi Wang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/10/React-CheetSheet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Guoyi Wang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guoyi's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          React_CheetSheet
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-02-10 15:54:13" itemprop="dateCreated datePublished" datetime="2021-02-10T15:54:13-05:00">2021-02-10</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-02-17 21:57:43" itemprop="dateModified" datetime="2021-02-17T21:57:43-05:00">2021-02-17</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/React/" itemprop="url" rel="index"><span itemprop="name">React</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="React-Cheet-Sheet"><a href="#React-Cheet-Sheet" class="headerlink" title="React Cheet Sheet"></a>React Cheet Sheet</h1><h2 id="Virtual-Dom"><a href="#Virtual-Dom" class="headerlink" title="Virtual Dom"></a>Virtual Dom</h2><h3 id="Two-way-to-create-virtual-DOM"><a href="#Two-way-to-create-virtual-DOM" class="headerlink" title="Two way to create virtual DOM"></a>Two way to create virtual DOM</h3><ul>
+<li><p>Only JS</p>
+</li>
+<li><p>const VDOM = React.createElement(‘xx’,{id:’xx’},’xx’)</p>
+</li>
+<li><p>JSX - JavaScript XML(Extensible Markup Language)</p>
+</li>
+<li><pre><code class="javascript">
+ var ele = &lt;h1&gt;Hello JSX!&lt;/h1&gt;
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* JS + XML本质是Only JS中写法的语法糖, 使用babel后转成JS同上</span><br><span class="line">* 它不是字符串, 也不是HTML&#x2F;XML标签, 它最终产生的就是一个JS对象</span><br><span class="line">* 遇到 &lt;开头的代码, 以标签的语法解析: html同名标签转换为html同名元素, 其它标签需要特别解析</span><br><span class="line">* 遇到以 &#123; 开头的代码，以JS语法解析: 标签中的js表达式必须用&#123; &#125;包含</span><br><span class="line"></span><br><span class="line">* 渲染虚拟DOM(元素)</span><br><span class="line">  * 语法:  ReactDOM.render(virtualDOM, containerDOM)</span><br><span class="line"></span><br><span class="line">    * &#96;&#96;&#96;javaScript</span><br><span class="line"></span><br><span class="line">        ReactDOM.render(&lt;MyComponent&#x2F;&gt;, document.getElementById(&#39;test&#39;))</span><br><span class="line">        </span><br></pre></td></tr></table></figure>
+
+  * React find the component of MyComponent
+  * If this virtualDOM is class component, a instance of this class is created and then use **render** in the prorotype **React.Component**
+  * Transforming the virtual dom from the return of the &quot;render&quot; into DOM node that your browser can understand and display on the screen.
+* 作用: 将虚拟DOM元素渲染到页面中的真实容器DOM中显示
+* containerDOM: 用来包含virtual dom的真实dom对象
+</code></pre>
+</li>
+</ul>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>DOM manipulation is extremely slow.</li>
+</ul>
+<h2 id="State"><a href="#State" class="headerlink" title="State"></a>State</h2><h3 id="“this”"><a href="#“this”" class="headerlink" title="“this”"></a>“this”</h3><ul>
+<li><p><strong>this</strong> in the render/constructor inside the component is the <strong>instance of this Class component</strong></p>
+</li>
+<li><p><strong>this</strong> is undefined in new created function in class component</p>
+<ul>
+<li>ES6, <strong>React.Component</strong> doesn’t auto bind methods to itself</li>
+</ul>
+</li>
+<li><p>Two way to fix it</p>
+<ul>
+<li><p>Bind this in constructor</p>
+<ul>
+<li><p>新建function: changeWeather时，放在哪里？ ———— Weather的原型对象（Prototype Object: React Component）上，供实例使用</p>
+</li>
+<li><p>由于changeWeather是作为onClick的回调，所以不是通过实例调用的，是直接调用</p>
+<ul>
+<li><p>直接调用类中的方法，但类中的方法默认开启了局部的严格模式，所以changeWeather中的this为undefined</p>
+</li>
+<li><pre><code class="javascript">    Class Person &#123;
+        constructor(name, age)&#123;
+            this.name = name;
+            this.age = age;
+        &#125;
+        study()&#123;
+            console.log(this);
+        &#125;
+
+        const p1 = new Person(&#39;tom&#39;, 18);
+        p1.study() // 通过实例调用
+        const x = p1.study;
+        x(); // p1.study 赋值给 x 了， x()是直接调用
+    &#125;
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* 通过constructor中的bind, 新建了一个**changeWeather**</span><br><span class="line">* changeWeather调用几次？ ———— 点几次调几次</span><br><span class="line"></span><br><span class="line">* &#96;&#96;&#96;javascript</span><br><span class="line">    class Weather extends React.Component&#123;</span><br><span class="line">            constructor(props)&#123;</span><br><span class="line">                console.log(&#39;constructor&#39;);</span><br><span class="line">                super(props)</span><br><span class="line">                this.state &#x3D; &#123;isHot:false,wind:&#39;微风&#39;&#125;</span><br><span class="line">                this.changeWeather &#x3D; this.changeWeather.bind(this)</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            render()&#123;</span><br><span class="line">                console.log(&#39;render&#39;);</span><br><span class="line">                const &#123;isHot,wind&#125; &#x3D; this.state</span><br><span class="line">                return &lt;h1 onClick&#x3D;&#123;this.changeWeather&#125;&gt;今天天气很&#123;isHot ? &#39;炎热&#39; : &#39;凉爽&#39;&#125;，&#123;wind&#125;&lt;&#x2F;h1&gt;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            changeWeather()&#123;</span><br><span class="line">                const isHot &#x3D; this.state.isHot</span><br><span class="line">                &#x2F;&#x2F;严重注意：状态必须通过setState进行更新,且更新是一种合并，不是替换。</span><br><span class="line">                this.setState(&#123;isHot:!isHot&#125;)</span><br><span class="line">                console.log(this);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        ReactDOM.render(&lt;Weather&#x2F;&gt;,document.getElementById(&#39;test&#39;))</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Fat arrow functions</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
+<li>Ref in node just like id</li>
+</ul>
+<h2 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h2><img src="/image/redux.png" width="600" height="100">
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Technology/" rel="tag"># Technology</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/02/03/Basic-Algorithm-High-Precision/" rel="prev" title="Basic-Algorithm-High-Precision">
+                  <i class="fa fa-chevron-left"></i> Basic-Algorithm-High-Precision
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Guoyi Wang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="//cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
