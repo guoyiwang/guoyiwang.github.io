@@ -273,7 +273,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-02-17 22:15:00" itemprop="dateModified" datetime="2021-02-17T22:15:00-05:00">2021-02-17</time>
+        <time title="Modified: 2021-02-17 23:06:15" itemprop="dateModified" datetime="2021-02-17T23:06:15-05:00">2021-02-17</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -301,7 +301,7 @@
 <li><p>const VDOM = React.createElement(‘xx’,{id:’xx’},’xx’)</p>
 </li>
 <li><p>JSX - JavaScript XML(Extensible Markup Language)</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> ele = <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello JSX!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ele = <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello JSX!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>JS + XML本质是Only JS中写法的语法糖, 使用babel后转成JS同上</p>
 </li>
@@ -311,10 +311,10 @@
 </li>
 <li><p>遇到以 { 开头的代码，以JS语法解析: 标签中的js表达式必须用{ }包含</p>
 </li>
-<li><p>渲染虚拟DOM(元素)</p>
-<ul>
+</ul>
+<h3 id="渲染虚拟DOM-元素"><a href="#渲染虚拟DOM-元素" class="headerlink" title="渲染虚拟DOM(元素)"></a>渲染虚拟DOM(元素)</h3><ul>
 <li><p>语法:  ReactDOM.render(virtualDOM, containerDOM)</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">MyComponent</span>/&gt;</span></span>, <span class="built_in">document</span>.getElementById(<span class="string">&#x27;test&#x27;</span>))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">MyComponent</span>/&gt;</span></span>, <span class="built_in">document</span>.getElementById(<span class="string">&#x27;test&#x27;</span>))</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>React find the component of MyComponent</li>
@@ -326,6 +326,33 @@
 </li>
 <li><p>containerDOM: 用来包含virtual dom的真实dom对象</p>
 </li>
+</ul>
+<h4 id="Different-between-in-React-Component-render-and-ReactDOM-render"><a href="#Different-between-in-React-Component-render-and-ReactDOM-render" class="headerlink" title="Different between in React Component render and ReactDOM.render"></a>Different between in React Component render and ReactDOM.render</h4><ul>
+<li><p>React Component render</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> ( &lt;</span><br><span class="line">      div &gt; Hello &lt; /div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>No arguments and returns the corresponding React element tree(instance of Component) for that component</li>
+<li>A new element React element tree is returned from the Component.render() method based on the new props and state</li>
+<li>Component.render() gets called when<ul>
+<li>the props or the state of a component change</li>
+<li>shouldComponentUpdate() returns true.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>ReactDOM.render</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ReactDOM.render( &lt; Test / &gt; ,<span class="built_in">document</span>.getElementById(<span class="string">&#x27;react-application&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>ReactDOM.render(element, container) method is a top-level API <ul>
+<li>Argument1: a React element root of an element tree</li>
+<li>Argument2: a container DOM element</li>
+</ul>
+</li>
+<li>Turns that <strong>passed React element</strong> into a corresponding DOM element (tree)</li>
+<li>Mounts that element(DOM element) as a child in the container DOM element</li>
+<li>Before mounting any DOM elements to the container though, React performs a <strong>diff</strong> between <em>the passed element tree</em> <font color="#FF0000">(is it still React element or DOM element???)</font> and the <em>currently mounted DOM</em> to determine which of the DOM nodes in the currently mounted DOM have to be updated in order to match the newly passed element tree.</li>
 </ul>
 </li>
 </ul>
@@ -349,7 +376,7 @@
 <li><p>由于changeWeather是作为onClick的回调，所以不是通过实例调用的，是直接调用</p>
 <ul>
 <li><p>直接调用类中的方法，但类中的方法默认开启了局部的严格模式，所以changeWeather中的this为undefined</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Class Person &#123;</span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">name, age</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">study</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> p1 = <span class="keyword">new</span> Person(<span class="string">&#x27;tom&#x27;</span>, <span class="number">18</span>);</span><br><span class="line">    p1.study() <span class="comment">// 通过实例调用</span></span><br><span class="line">    <span class="keyword">const</span> x = p1.study;</span><br><span class="line">    x(); <span class="comment">// p1.study 赋值给 x 了， x()是直接调用</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Class Person &#123;</span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">name, age</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">study</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> p1 = <span class="keyword">new</span> Person(<span class="string">&#x27;tom&#x27;</span>, <span class="number">18</span>);</span><br><span class="line">    p1.study() <span class="comment">// 通过实例调用</span></span><br><span class="line">    <span class="keyword">const</span> x = p1.study;</span><br><span class="line">    x(); <span class="comment">// p1.study 赋值给 x 了， x()是直接调用</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
