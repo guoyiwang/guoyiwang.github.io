@@ -33,7 +33,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2021/02/10/images/redux.png">
 <meta property="article:published_time" content="2021-02-10T20:54:13.000Z">
-<meta property="article:modified_time" content="2021-02-18T03:05:37.799Z">
+<meta property="article:modified_time" content="2021-02-18T03:12:06.968Z">
 <meta property="article:author" content="Guoyi Wang">
 <meta property="article:tag" content="Technology">
 <meta name="twitter:card" content="summary">
@@ -281,7 +281,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-02-17 22:05:37" itemprop="dateModified" datetime="2021-02-17T22:05:37-05:00">2021-02-17</time>
+        <time title="Modified: 2021-02-17 22:12:06" itemprop="dateModified" datetime="2021-02-17T22:12:06-05:00">2021-02-17</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -344,7 +344,8 @@
 <ul>
 <li><p>直接调用类中的方法，但类中的方法默认开启了局部的严格模式，所以changeWeather中的this为undefined</p>
 </li>
-<li><pre><code class="javascript">    Class Person &#123;
+<li><pre><code class="javascript">
+    Class Person &#123;
         constructor(name, age)&#123;
             this.name = name;
             this.age = age;
@@ -358,6 +359,7 @@
         const x = p1.study;
         x(); // p1.study 赋值给 x 了， x()是直接调用
     &#125;
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* 通过constructor中的bind, 新建了一个**changeWeather**</span><br><span class="line">* changeWeather调用几次？ ———— 点几次调几次</span><br><span class="line"></span><br><span class="line">* &#96;&#96;&#96;javascript</span><br><span class="line">    class Weather extends React.Component&#123;</span><br><span class="line">            constructor(props)&#123;</span><br><span class="line">                console.log(&#39;constructor&#39;);</span><br><span class="line">                super(props)</span><br><span class="line">                this.state &#x3D; &#123;isHot:false,wind:&#39;微风&#39;&#125;</span><br><span class="line">                this.changeWeather &#x3D; this.changeWeather.bind(this)</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            render()&#123;</span><br><span class="line">                console.log(&#39;render&#39;);</span><br><span class="line">                const &#123;isHot,wind&#125; &#x3D; this.state</span><br><span class="line">                return &lt;h1 onClick&#x3D;&#123;this.changeWeather&#125;&gt;今天天气很&#123;isHot ? &#39;炎热&#39; : &#39;凉爽&#39;&#125;，&#123;wind&#125;&lt;&#x2F;h1&gt;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            changeWeather()&#123;</span><br><span class="line">                const isHot &#x3D; this.state.isHot</span><br><span class="line">                &#x2F;&#x2F;严重注意：状态必须通过setState进行更新,且更新是一种合并，不是替换。</span><br><span class="line">                this.setState(&#123;isHot:!isHot&#125;)</span><br><span class="line">                console.log(this);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        ReactDOM.render(&lt;Weather&#x2F;&gt;,document.getElementById(&#39;test&#39;))</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></code></pre>
 </li>
 </ul>
