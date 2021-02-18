@@ -273,7 +273,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-02-17 22:12:06" itemprop="dateModified" datetime="2021-02-17T22:12:06-05:00">2021-02-17</time>
+        <time title="Modified: 2021-02-17 22:15:00" itemprop="dateModified" datetime="2021-02-17T22:15:00-05:00">2021-02-17</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -301,18 +301,32 @@
 <li><p>const VDOM = React.createElement(‘xx’,{id:’xx’},’xx’)</p>
 </li>
 <li><p>JSX - JavaScript XML(Extensible Markup Language)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> ele = <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello JSX!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 </li>
-<li><pre><code class="javascript">
- var ele = &lt;h1&gt;Hello JSX!&lt;/h1&gt;
+<li><p>JS + XML本质是Only JS中写法的语法糖, 使用babel后转成JS同上</p>
+</li>
+<li><p>它不是字符串, 也不是HTML/XML标签, 它最终产生的就是一个JS对象</p>
+</li>
+<li><p>遇到 &lt;开头的代码, 以标签的语法解析: html同名标签转换为html同名元素, 其它标签需要特别解析</p>
+</li>
+<li><p>遇到以 { 开头的代码，以JS语法解析: 标签中的js表达式必须用{ }包含</p>
+</li>
+<li><p>渲染虚拟DOM(元素)</p>
+<ul>
+<li><p>语法:  ReactDOM.render(virtualDOM, containerDOM)</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">MyComponent</span>/&gt;</span></span>, <span class="built_in">document</span>.getElementById(<span class="string">&#x27;test&#x27;</span>))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* JS + XML本质是Only JS中写法的语法糖, 使用babel后转成JS同上</span><br><span class="line">* 它不是字符串, 也不是HTML&#x2F;XML标签, 它最终产生的就是一个JS对象</span><br><span class="line">* 遇到 &lt;开头的代码, 以标签的语法解析: html同名标签转换为html同名元素, 其它标签需要特别解析</span><br><span class="line">* 遇到以 &#123; 开头的代码，以JS语法解析: 标签中的js表达式必须用&#123; &#125;包含</span><br><span class="line"></span><br><span class="line">* 渲染虚拟DOM(元素)</span><br><span class="line">  * 语法:  ReactDOM.render(virtualDOM, containerDOM)</span><br><span class="line"></span><br><span class="line">    * &#96;&#96;&#96;javaScript</span><br><span class="line"></span><br><span class="line">        ReactDOM.render(&lt;MyComponent&#x2F;&gt;, document.getElementById(&#39;test&#39;))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-  * React find the component of MyComponent
-  * If this virtualDOM is class component, a instance of this class is created and then use **render** in the prorotype **React.Component**
-  * Transforming the virtual dom from the return of the &quot;render&quot; into DOM node that your browser can understand and display on the screen.
-* 作用: 将虚拟DOM元素渲染到页面中的真实容器DOM中显示
-* containerDOM: 用来包含virtual dom的真实dom对象
-</code></pre>
+<ul>
+<li>React find the component of MyComponent</li>
+<li>If this virtualDOM is class component, a instance of this class is created and then use <strong>render</strong> in the prorotype <strong>React.Component</strong></li>
+<li>Transforming the virtual dom from the return of the “render” into DOM node that your browser can understand and display on the screen.</li>
+</ul>
+</li>
+<li><p>作用: 将虚拟DOM元素渲染到页面中的真实容器DOM中显示</p>
+</li>
+<li><p>containerDOM: 用来包含virtual dom的真实dom对象</p>
+</li>
+</ul>
 </li>
 </ul>
 <h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
@@ -335,26 +349,14 @@
 <li><p>由于changeWeather是作为onClick的回调，所以不是通过实例调用的，是直接调用</p>
 <ul>
 <li><p>直接调用类中的方法，但类中的方法默认开启了局部的严格模式，所以changeWeather中的this为undefined</p>
-</li>
-<li><pre><code class="javascript">
-    Class Person &#123;
-        constructor(name, age)&#123;
-            this.name = name;
-            this.age = age;
-        &#125;
-        study()&#123;
-            console.log(this);
-        &#125;
-
-        const p1 = new Person(&#39;tom&#39;, 18);
-        p1.study() // 通过实例调用
-        const x = p1.study;
-        x(); // p1.study 赋值给 x 了， x()是直接调用
-    &#125;
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* 通过constructor中的bind, 新建了一个**changeWeather**</span><br><span class="line">* changeWeather调用几次？ ———— 点几次调几次</span><br><span class="line"></span><br><span class="line">* &#96;&#96;&#96;javascript</span><br><span class="line">    class Weather extends React.Component&#123;</span><br><span class="line">            constructor(props)&#123;</span><br><span class="line">                console.log(&#39;constructor&#39;);</span><br><span class="line">                super(props)</span><br><span class="line">                this.state &#x3D; &#123;isHot:false,wind:&#39;微风&#39;&#125;</span><br><span class="line">                this.changeWeather &#x3D; this.changeWeather.bind(this)</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            render()&#123;</span><br><span class="line">                console.log(&#39;render&#39;);</span><br><span class="line">                const &#123;isHot,wind&#125; &#x3D; this.state</span><br><span class="line">                return &lt;h1 onClick&#x3D;&#123;this.changeWeather&#125;&gt;今天天气很&#123;isHot ? &#39;炎热&#39; : &#39;凉爽&#39;&#125;，&#123;wind&#125;&lt;&#x2F;h1&gt;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            changeWeather()&#123;</span><br><span class="line">                const isHot &#x3D; this.state.isHot</span><br><span class="line">                &#x2F;&#x2F;严重注意：状态必须通过setState进行更新,且更新是一种合并，不是替换。</span><br><span class="line">                this.setState(&#123;isHot:!isHot&#125;)</span><br><span class="line">                console.log(this);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        ReactDOM.render(&lt;Weather&#x2F;&gt;,document.getElementById(&#39;test&#39;))</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Class Person &#123;</span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">name, age</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">study</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> p1 = <span class="keyword">new</span> Person(<span class="string">&#x27;tom&#x27;</span>, <span class="number">18</span>);</span><br><span class="line">    p1.study() <span class="comment">// 通过实例调用</span></span><br><span class="line">    <span class="keyword">const</span> x = p1.study;</span><br><span class="line">    x(); <span class="comment">// p1.study 赋值给 x 了， x()是直接调用</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+</li>
+<li><p>通过constructor中的bind, 新建了一个<strong>changeWeather</strong></p>
+</li>
+<li><p>changeWeather调用几次？ ———— 点几次调几次</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Weather</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="title">constructor</span>(<span class="params">props</span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;constructor&#x27;</span>);</span><br><span class="line">            <span class="built_in">super</span>(props)</span><br><span class="line">            <span class="built_in">this</span>.state = &#123;<span class="attr">isHot</span>:<span class="literal">false</span>,<span class="attr">wind</span>:<span class="string">&#x27;微风&#x27;</span>&#125;</span><br><span class="line">            <span class="built_in">this</span>.changeWeather = <span class="built_in">this</span>.changeWeather.bind(<span class="built_in">this</span>)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="title">render</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;render&#x27;</span>);</span><br><span class="line">            <span class="keyword">const</span> &#123;isHot,wind&#125; = <span class="built_in">this</span>.state</span><br><span class="line">            <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">onClick</span>=<span class="string">&#123;this.changeWeather&#125;</span>&gt;</span>今天天气很&#123;isHot ? &#x27;炎热&#x27; : &#x27;凉爽&#x27;&#125;，&#123;wind&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="title">changeWeather</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">const</span> isHot = <span class="built_in">this</span>.state.isHot</span><br><span class="line">            <span class="comment">//严重注意：状态必须通过setState进行更新,且更新是一种合并，不是替换。</span></span><br><span class="line">            <span class="built_in">this</span>.setState(&#123;<span class="attr">isHot</span>:!isHot&#125;)</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="built_in">this</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">Weather</span>/&gt;</span></span>,<span class="built_in">document</span>.getElementById(<span class="string">&#x27;test&#x27;</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
