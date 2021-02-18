@@ -267,7 +267,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2021-02-18 08:03:38 / Modified: 09:08:48" itemprop="dateCreated datePublished" datetime="2021-02-18T08:03:38-05:00">2021-02-18</time>
+      <time title="Created: 2021-02-18 08:03:38 / Modified: 09:10:42" itemprop="dateCreated datePublished" datetime="2021-02-18T08:03:38-05:00">2021-02-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -333,10 +333,18 @@
 </li>
 </ul>
 <h4 id="Creating-global-object-property"><a href="#Creating-global-object-property" class="headerlink" title="Creating global object property"></a>Creating global object property</h4><ul>
-<li><p><font color="#00FF00" size="6px">var</font>: create a property on the global object: window</p>
+<li><p><font color="#00FF00" size="6px">var</font>: create a property on the global object(window)</p>
 </li>
-<li><p><font color="#FF0000" size="6px">let</font>: doesn’t create a property on the global object: window</p>
+<li><p><font color="#FF0000" size="6px">let</font>: doesn’t create a property on the global object(window)</p>
   <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="string">&quot;Foo&quot;</span>;  <span class="comment">// globally scoped</span></span><br><span class="line"><span class="keyword">let</span> bar = <span class="string">&quot;Bar&quot;</span>; <span class="comment">// globally scoped</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.foo); <span class="comment">// Foo</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.bar); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="Redeclaration"><a href="#Redeclaration" class="headerlink" title="Redeclaration"></a>Redeclaration</h3><ul>
+<li><p><font color="#00FF00" size="6px">var</font>: let you re-declare the same variable in the same scope</p>
+</li>
+<li><p><font color="#FF0000" size="6px">let</font>: raises a SyntaxError</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#x27;use strict&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> foo = <span class="string">&quot;foo1&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> foo = <span class="string">&quot;foo2&quot;</span>; <span class="comment">// No problem, &#x27;foo&#x27; is replaced.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> bar = <span class="string">&quot;bar1&quot;</span>;</span><br><span class="line"><span class="keyword">let</span> bar = <span class="string">&quot;bar2&quot;</span>; <span class="comment">// SyntaxError: Identifier &#x27;bar&#x27; has already been declared</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 
