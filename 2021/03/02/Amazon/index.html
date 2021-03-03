@@ -31,12 +31,12 @@
 <meta property="og:site_name" content="Guoyi&#39;s Blog">
 <meta property="og:description" content="OA2Fill The Truck || Maximum Units Question statememt:  Fill a cargo with containers, each container has multiple items. Given the number of containers the cargo can load, write a algorithm to return">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2021/03/02/images/subtree_with_maximum_average.png">
+<meta property="og:image" content="http://example.com/images/subtree_with_maximum_average.png">
 <meta property="article:published_time" content="2021-03-02T17:53:04.000Z">
-<meta property="article:modified_time" content="2021-03-03T02:39:10.712Z">
+<meta property="article:modified_time" content="2021-03-03T17:27:42.712Z">
 <meta property="article:author" content="Guoyi Wang">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/03/02/images/subtree_with_maximum_average.png">
+<meta name="twitter:image" content="http://example.com/images/subtree_with_maximum_average.png">
 
 
 <link rel="canonical" href="http://example.com/2021/03/02/Amazon/">
@@ -272,10 +272,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2021-03-02 12:53:04 / Modified: 21:39:10" itemprop="dateCreated datePublished" datetime="2021-03-02T12:53:04-05:00">2021-03-02</time>
+      <time title="Created: 2021-03-02 12:53:04" itemprop="dateCreated datePublished" datetime="2021-03-02T12:53:04-05:00">2021-03-02</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-03-03 12:27:42" itemprop="dateModified" datetime="2021-03-03T12:27:42-05:00">2021-03-03</time>
+      </span>
 
   
 </div>
@@ -335,7 +341,7 @@
 </li>
 <li><p>Example:</p>
 <ul>
-<li><img src="../images/subtree_with_maximum_average.png">
+<li><img src="/images/subtree_with_maximum_average.png">
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">solution</span></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> maxAvg = Integer.MIN_VALUE;</span><br><span class="line">    TreeNode maxNode = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">maximumAverageSubtree</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        findRootWithMaxAverage(root);</span><br><span class="line">        <span class="keyword">return</span> maxNode;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span>[] findRootWithMaxAverage(TreeNode root)&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">double</span>[]&#123;<span class="number">0</span>, <span class="number">0</span>&#125;;</span><br><span class="line">        <span class="keyword">if</span>(root.children == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">double</span>[]&#123;root.val, <span class="number">1</span>&#125;;</span><br><span class="line">        <span class="keyword">double</span> currSum = root.val;</span><br><span class="line">        <span class="keyword">double</span> currCount = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(TreeNode child: root.children)&#123;</span><br><span class="line">            <span class="comment">// subTreeInfo records the sum of each node in a subtree and the number of nodes in this subtree</span></span><br><span class="line">            <span class="keyword">double</span>[] subTreeInfo = findRootWithMaxAverage(child);</span><br><span class="line">            currSum += subTreeInfo[<span class="number">0</span>];</span><br><span class="line">            currCount += subTreeInfo[<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">double</span> currAvg = currSum/currCount;</span><br><span class="line">        <span class="keyword">if</span>(currCount &gt; <span class="number">1</span> &amp;&amp; currAvg &gt; maxAvg)&#123;</span><br><span class="line">            maxAvg = currAvg;</span><br><span class="line">            maxNode = root;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">double</span>[]&#123;sum, count&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
