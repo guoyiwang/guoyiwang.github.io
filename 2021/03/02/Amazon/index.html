@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="OA2Fill The Truck || Maximum Units Question statememt:  Fill a cargo with containers, each container has multiple items. Given the number of containers the cargo can load, write a algorithm to return">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Amazon">
+<meta property="og:url" content="http://example.com/2021/03/02/Amazon/index.html">
+<meta property="og:site_name" content="Guoyi&#39;s Blog">
+<meta property="og:description" content="OA2Fill The Truck || Maximum Units Question statememt:  Fill a cargo with containers, each container has multiple items. Given the number of containers the cargo can load, write a algorithm to return">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2021/03/02/images/subtree_with_maximum_average.png">
+<meta property="article:published_time" content="2021-03-02T17:53:04.000Z">
+<meta property="article:modified_time" content="2021-03-03T02:39:10.712Z">
+<meta property="article:author" content="Guoyi Wang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/03/02/images/subtree_with_maximum_average.png">
+
+
+<link rel="canonical" href="http://example.com/2021/03/02/Amazon/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Amazon | Guoyi's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Guoyi's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="https://guoyiwang.github.io/Resume/" rel="noopener" target="_blank"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OA2"><span class="nav-number">1.</span> <span class="nav-text">OA2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Fill-The-Truck-Maximum-Units"><span class="nav-number">1.1.</span> <span class="nav-text">Fill The Truck || Maximum Units</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Subtree-with-Maximum-Average"><span class="nav-number">1.2.</span> <span class="nav-text">Subtree with Maximum Average</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Disk-Space-Analysis"><span class="nav-number">1.3.</span> <span class="nav-text">Disk Space Analysis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nearest-City"><span class="nav-number">1.4.</span> <span class="nav-text">Nearest City</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Max-Profit-Sell-Diminishing-Valued-Colored-Balls"><span class="nav-number">1.5.</span> <span class="nav-text">Max Profit || Sell Diminishing-Valued Colored Balls</span></a></li></ol></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Guoyi Wang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/02/Amazon/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Guoyi Wang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guoyi's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Amazon
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-03-02 12:53:04 / Modified: 21:39:10" itemprop="dateCreated datePublished" datetime="2021-03-02T12:53:04-05:00">2021-03-02</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="OA2"><a href="#OA2" class="headerlink" title="OA2"></a>OA2</h1><h2 id="Fill-The-Truck-Maximum-Units"><a href="#Fill-The-Truck-Maximum-Units" class="headerlink" title="Fill The Truck || Maximum Units"></a>Fill The Truck || Maximum Units</h2><ul>
+<li><p>Question statememt:</p>
+<ul>
+<li>Fill a cargo with containers, each container has multiple items. Given the number of containers the cargo can load, write a algorithm to return the maximum number of items that can be shipped</li>
+<li>Input:<ul>
+<li>num: the number of containers</li>
+<li>containers: a list of integers representing the number of containers</li>
+<li>itemSize: an ineger representing size of itemsPerContainer</li>
+<li>itemsPerContainer: a list of integers representing the number of items packed in each container</li>
+<li>cargoSize: a integer representing the number of containers the cargo can carry</li>
+</ul>
+</li>
+<li>Output: return an integer representing the maximum items that can be carried by the cargo.</li>
+</ul>
+</li>
+<li><p>Example</p>
+<ul>
+<li>Inputs<ul>
+<li>num = 3, 3 containers</li>
+<li>containers=[3, 1, 2]</li>
+<li>itemSize=3, the size of itemsPerContainer is 3</li>
+<li>itemsPerContainer=[1, 2, 3]</li>
+<li>cargoSize=4, this cargo could carry 4 containers</li>
+</ul>
+</li>
+<li>Output: 9</li>
+<li>Examplanation<ul>
+<li>There are 3 containers which include 1 item, 1 container which include 2 items, 2 containers which include 3 items.</li>
+<li>Container list, each value means the number of item that this container includes, [3, 3, 1, 1, 1, 2]</li>
+<li>This cargoSize is 4, answer is 3+3+2+1=9</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Solution</p>
+<ul>
+<li>TimeComplexity: O(NlogN), N = num or itemSize</li>
+<li>The length of PriorityQueue maxHeap is num or itemSize</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">fillTheTruck</span><span class="params">(<span class="keyword">int</span> num, <span class="keyword">int</span>[] containers, <span class="keyword">int</span> itemSize, <span class="keyword">int</span>[] itemsPerContainer, <span class="keyword">long</span> cargoSize)</span></span>&#123;</span><br><span class="line">    <span class="comment">// b1,b2 represent one object in this PriorityQuere</span></span><br><span class="line">    <span class="comment">// the first element is containers[i]</span></span><br><span class="line">    <span class="comment">// the second element is itemsPerContainer[i], based the comparation between itemsPerContainer to orders the element in this PriorityQuere</span></span><br><span class="line">    <span class="comment">// (b1,b2) -&gt; b2[1] -b1[1]: if lhs &lt; rhs, return +1, if lhs &gt; rhs, return -1</span></span><br><span class="line">    PriorityQueue&lt;<span class="keyword">int</span>[]&gt; maxHeap = <span class="keyword">new</span> PriorityQueue&lt;&gt;((b1,b2) -&gt; b2[<span class="number">1</span>] -b1[<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num; i++)&#123;</span><br><span class="line">        maxHeap.add(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;containers[i], itemsPerContainer[i]&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(cargoSize &gt; <span class="number">0</span> &amp;&amp; !pq.isEmpty())&#123;</span><br><span class="line">        <span class="keyword">int</span>[] curr = maxHeap.poll();</span><br><span class="line">        <span class="keyword">long</span> containerCargoCanCarry = Math.min(cargoSize, curr[<span class="number">0</span>]);</span><br><span class="line">        cargoSize -= containerCargoCanCarry;</span><br><span class="line">        res += containerCargoCanCarry * curr[<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Subtree-with-Maximum-Average"><a href="#Subtree-with-Maximum-Average" class="headerlink" title="Subtree with Maximum Average"></a>Subtree with Maximum Average</h2><ul>
+<li><p>Question statement: Given an N-ary tree, find the subtree with the maximum average. Return the root of the subtree.<br>A subtree of a tree is the node which have <strong>at least 1 child</strong> plus all its descendants. The average value of a subtree is the sum of its values, divided by the number of nodes.</p>
+</li>
+<li><p>Example:</p>
+<ul>
+<li><img src="../images/subtree_with_maximum_average.png">
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">solution</span></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> maxAvg = Integer.MIN_VALUE;</span><br><span class="line">    TreeNode maxNode = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">maximumAverageSubtree</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        findRootWithMaxAverage(root);</span><br><span class="line">        <span class="keyword">return</span> maxNode;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span>[] findRootWithMaxAverage(TreeNode root)&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">double</span>[]&#123;<span class="number">0</span>, <span class="number">0</span>&#125;;</span><br><span class="line">        <span class="keyword">if</span>(root.children == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">double</span>[]&#123;root.val, <span class="number">1</span>&#125;;</span><br><span class="line">        <span class="keyword">double</span> currSum = root.val;</span><br><span class="line">        <span class="keyword">double</span> currCount = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(TreeNode child: root.children)&#123;</span><br><span class="line">            <span class="comment">// subTreeInfo records the sum of each node in a subtree and the number of nodes in this subtree</span></span><br><span class="line">            <span class="keyword">double</span>[] subTreeInfo = findRootWithMaxAverage(child);</span><br><span class="line">            currSum += subTreeInfo[<span class="number">0</span>];</span><br><span class="line">            currCount += subTreeInfo[<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">double</span> currAvg = currSum/currCount;</span><br><span class="line">        <span class="keyword">if</span>(currCount &gt; <span class="number">1</span> &amp;&amp; currAvg &gt; maxAvg)&#123;</span><br><span class="line">            maxAvg = currAvg;</span><br><span class="line">            maxNode = root;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">double</span>[]&#123;sum, count&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Similary Question: <a target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-average-subtree">https://leetcode.com/problems/maximum-average-subtree</a></p>
+<ul>
+<li>A node also could be treated as a subtree</li>
+<li>children of one node only have left child and right child.</li>
+<li>Time Complexity: O(N)</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="keyword">double</span> max = Integer.MIN_VALUE;</span><br><span class="line">  TreeNode maxNode = <span class="keyword">null</span>;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">maximumAverageSubtree</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">      findRootWithMaxAverage(root);</span><br><span class="line">      <span class="keyword">return</span> max;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">double</span>[] findRootWithMaxAverage(TreeNode root)&#123;</span><br><span class="line">      <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">double</span>[]&#123;<span class="number">0</span>, <span class="number">0</span>&#125;;</span><br><span class="line">      <span class="keyword">double</span> currSum = root.val;</span><br><span class="line">      <span class="keyword">double</span> currCount = <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">double</span>[] leftSubTree = findRootWithMaxAverage(root.left);</span><br><span class="line">      currSum += leftSubTree[<span class="number">0</span>];</span><br><span class="line">      currCount += leftSubTree[<span class="number">1</span>];</span><br><span class="line">      </span><br><span class="line">      <span class="keyword">double</span>[] rightSubTree = findRootWithMaxAverage(root.right);</span><br><span class="line">      currSum += rightSubTree[<span class="number">0</span>];</span><br><span class="line">      currCount += rightSubTree[<span class="number">1</span>];</span><br><span class="line">      </span><br><span class="line">      <span class="keyword">double</span> currAvg = currSum/currCount;</span><br><span class="line">      <span class="keyword">if</span>(currAvg &gt; max)&#123;</span><br><span class="line">          max = currAvg;</span><br><span class="line">          maxNode = root;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">double</span>[]&#123;currSum, currCount&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Disk-Space-Analysis"><a href="#Disk-Space-Analysis" class="headerlink" title="Disk Space Analysis"></a>Disk Space Analysis</h2><ul>
+<li><p>Simiary Question in Leetcode: <a target="_blank" rel="noopener" href="https://leetcode.com/problems/sliding-window-maximum/">https://leetcode.com/problems/sliding-window-maximum/</a></p>
+</li>
+<li><p>Problem statement</p>
+<ul>
+<li>Input:<ul>
+<li>numComputer: an integer representing the number of computers</li>
+<li>hardDiskSpace: a list of integers representing the hard disk space of the computers</li>
+<li>segmentLength: an integer representing the length of the contiguous segment of computers to be considered in each iteration</li>
+</ul>
+</li>
+<li>Output:<ul>
+<li>Return an integer representing the maximum available disk space among all the minima that are found during the analysis</li>
+</ul>
+</li>
+<li>Example<ul>
+<li>numComputer: 4</li>
+<li>hardDiskSpace: [8, 2, 4, 5]</li>
+<li>segmentLength: 2</li>
+<li>The size of each block is 2. [8, 2], [2, 4], and [4, 5]</li>
+<li>The minima avaialbe space of each block is 2, 2, 4.</li>
+<li>The maximum available disk among all minima is 4.找到最小数中的最大数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Solution</p>
+<ul>
+<li><p>Brute Force</p>
+<ul>
+<li>There are <code>numComputer - segmentLength + 1</code> sliding windows</li>
+<li>There are <code>segmentLength</code> elements in each windows</li>
+<li>Time Complexity: O(n*k), n: numComputer, k: segmentLength</li>
+<li>Space Complexity: O(n - k + 1) for the sliding windows</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> max = Integer.MIN_VALUE;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">maxInMinimal</span><span class="params">(<span class="keyword">int</span> numComputer, <span class="keyword">int</span>[] hardDiskSpace, <span class="keyword">int</span> segmentLength)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(numComputer * segmentLength == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numComputer - segmentLength + <span class="number">1</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> min = Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i; j &lt; i+segmentLength; j++)&#123;</span><br><span class="line">            min = Math.min(min, hardDiskSpace[j]);<span class="comment">// the min in each window</span></span><br><span class="line">        &#125;</span><br><span class="line">        max = Math.max(max, min); <span class="comment">//save the bigger &quot;min&quot; in each window</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max; </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Deque(Double Ended Queue):</p>
+<ul>
+<li>Time Complexity: O(n), n is <code>hardDiskSpace.length</code></li>
+<li>Extra Space Complexity: O(k), k is <code>segmentLength</code></li>
+<li>deque is used to save the indexes of elements in the current sliding window</li>
+<li>删去超出范围: If an element in the deque and it is out of i-(k-1), discard them from the <strong>head</strong> of deque</li>
+<li>删去deque里过大的值: For the elements within <code>[i-(k-1), i]</code> which in the deque:<ul>
+<li>If <code>hardDiskSpace[ i ] &lt;  hardDiskSpace[deque.peekLast()]</code><ul>
+<li>deque.removeLast(): delete this index from the <strong>end</strong> of deque</li>
+<li>save <code>i</code> in the <strong>head</strong> of deque</li>
+<li>deque.peekFirst() is always the minimum in the current sliding window.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">maxInMinimal</span><span class="params">(<span class="keyword">int</span> numComputer, <span class="keyword">int</span>[] hardDiskSpace, <span class="keyword">int</span> segmentLength)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> maxValue = Integer.MIN_VALUE;</span><br><span class="line">    Deque&lt;Integer&gt; deque = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numComputer; i++)&#123;</span><br><span class="line">        <span class="comment">// the elements in deque are only in the current sliding window -- [i - segmentLength + 1, i]</span></span><br><span class="line">        <span class="keyword">while</span>(!deque.isEmpty() &amp;&amp; deque.peekFirst() &lt; i - segmentLength + <span class="number">1</span>)&#123;</span><br><span class="line">            deque.poll();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// delete the index in deque</span></span><br><span class="line">        <span class="comment">// if the value of this index is bigger than hardDiskSpace[i] which i is plan to join deque</span></span><br><span class="line">        <span class="keyword">while</span>(!deque.isEmpty() &amp;&amp; hardDiskSpace[i] &lt; hardDiskSpace[deque.peekLast()])&#123;</span><br><span class="line">            deque.removeLast();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// the head of deque&#x27;s value is always the minimun in the current sliding window</span></span><br><span class="line">        deque.offerLast(i);</span><br><span class="line">        <span class="keyword">if</span>( i &gt;= segmentLength - <span class="number">1</span>)&#123; <span class="comment">// i - k + 1&gt;=0, the first window is created</span></span><br><span class="line">            maxValue = Math.max(maxValue, hardDiskSpace[deque.peekFirst()]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxValue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Nearest-City"><a href="#Nearest-City" class="headerlink" title="Nearest City"></a>Nearest City</h2><h2 id="Max-Profit-Sell-Diminishing-Valued-Colored-Balls"><a href="#Max-Profit-Sell-Diminishing-Valued-Colored-Balls" class="headerlink" title="Max Profit || Sell Diminishing-Valued Colored Balls"></a>Max Profit || Sell Diminishing-Valued Colored Balls</h2><ul>
+<li><p>Question:</p>
+<ul>
+<li>inventory: [ 2, 8, 4, 10, 6, 6]</li>
+<li>orders: 20(the number of item you need get from this inventory)</li>
+<li>The profit of each item in the inventory = the number of items</li>
+<li>How to get the max profite after get the orders items?</li>
+</ul>
+</li>
+<li><p>Example</p>
+<ul>
+<li>Reorder: [ 2, 8, 4, 10, 6, 6] -&gt; [2, 4, 6, 6, 8, 10]</li>
+<li>n=5(The max profit item is 10, which is index is 5) — count=1(only one 10) — orders=20<ul>
+<li>inventory[ n ] - inventory[ n-1 ] = 10 - 8 &gt; 0</li>
+<li>orders -= count X (inventory[ n ] - inventory[ n-1 ]), orders = 20-1*2=18</li>
+<li>count ++</li>
+<li>The result is 10, 9</li>
+<li>The inventory is [2, 4, 6, 6, 8, 8]</li>
+</ul>
+</li>
+<li>n=4 (The max profit item is 8, which is index is 4) — count=2 (two 8) — orders=18<ul>
+<li>inventory[ n ] - inventory[ n-1 ] = 8 - 6 = 2 &gt; 0</li>
+<li>orders -= count X (inventory[ n ] - inventory[ n-1 ]), orders = 18-2*2=14</li>
+<li>count ++</li>
+<li>The result is 10, 9, 8, 8, 7, 7</li>
+<li>The inventory is [2, 4, 6, 6, 6, 6]</li>
+</ul>
+</li>
+<li>n=3 (The max profit item is 6, which is index is 3) — count=3 — orders=14<ul>
+<li>inventory[ n ] - inventory[ n-1 ] = 6 - 6 = 0 &gt; 0 (false)</li>
+<li>Nothing change, onky n– and count++</li>
+</ul>
+</li>
+<li>n=2 (The max profit item is 6, which is index is 2) — count=4 — orders=14<ul>
+<li>inventory[ n ] - inventory[ n-1 ] = 6 - 4 = 2 &gt; 0</li>
+<li>orders -= count X (inventory[ n ] - inventory[ n-1 ]), orders = 14-2*4=6</li>
+<li>count ++</li>
+<li>The result is 10, 9, 8, 8, 7, 7, 6, 6, 6, 6, 5, 5, 5, 5</li>
+<li>The inventory is [2, 4, 4, 4, 4, 4]</li>
+</ul>
+</li>
+<li>n=1 (The max profit item is 4, which is index is 1) — count=5 — orders=6<ul>
+<li>inventory[ n ] - inventory[ n-1 ] = 4 - 2 = 2 &gt; 0</li>
+<li>orders -= count X (inventory[ n ] - inventory[ n-1 ]), orders = 6-2*5=-4 (false)</li>
+<li>when orders &lt; count X (inventory[ n ] - inventory[ n-1 ])<ul>
+<li>only partial of [4, 4, 4, ,4, 4, 3, 3, 3, 3, 3] are needed</li>
+<li>First: orders/count decide the layer of item are need, like 6/5=1, the first layer of 4 are taken [4, 4, 4, 4, 4]<ul>
+<li>5*4 = count * sumFromXtoY(inventory[ n ], inventory[ n ] - a)</li>
+</ul>
+</li>
+<li>Second: orders%count decide the leftover of items, like 6%5=1, only get [ 3 ] in [3, 3, 3, 3, 3]<ul>
+<li>3 = orders%count * (inventory[ n ] - a);</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>orders = 0</li>
+<li>The result is 10, 9, 8, 8, 7, 7, 6, 6, 6, 6, 5, 5, 5, 5, 4, 4, 4, 4, 4, 3</li>
+<li>The inventory is [2, 2, 3, 3, 3, 3]</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Solution:</p>
+<ul>
+<li><p>Order the inventory first: [2, 4, 6, 6, 8, 10], orders is 20</p>
+</li>
+<li><p>The answer should be 10, 9, 8, 8, 7, 7, 6, 6, 6, 6, 5, 5, 5, 5, 4, 4, 4, 4, 4, 3</p>
+</li>
+<li><p>orders: how many item need from inventory</p>
+<ul>
+<li>Initial: is provided in the question</li>
+<li>Change: <code>orders -= count * (inventory[n] - inventory[n-1])</code></li>
+<li>Decide the loop is end or not: while(orders&gt;0)</li>
+</ul>
+</li>
+<li><p>n: the end index of this inventory</p>
+<ul>
+<li>Initial: <code>inventory.length - 1</code></li>
+<li>Change: n– in each loop</li>
+</ul>
+</li>
+<li><p>count: record the number of the item with max profit in the level</p>
+<ul>
+<li>Initial: 1</li>
+<li>Change: count++ in each loop</li>
+</ul>
+</li>
+<li><p>TimeComplexity: nlg(n)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] inventory, <span class="keyword">int</span> orders)</span></span>&#123;</span><br><span class="line">        Arrays.sort(inventory);</span><br><span class="line">        <span class="keyword">long</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> n = inventory.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">long</span> count = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(orders &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>( n&gt;<span class="number">0</span> &amp;&amp; inventory[n] - inventory[n-<span class="number">1</span>] &gt; <span class="number">0</span> &amp;&amp; orders &gt;= count * (inventory[n] - inventory[n-<span class="number">1</span>]))&#123;</span><br><span class="line">                orders -= count * (inventory[n] - inventory[n-<span class="number">1</span>]);</span><br><span class="line">                ans += count * sumFromXtoY(inventory[n], inventory[n-<span class="number">1</span>]);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(n==<span class="number">0</span> || orders &lt; count * (inventory[n] - inventory[n-<span class="number">1</span>]))&#123;</span><br><span class="line">                <span class="keyword">long</span> layerNumber = orders/count;</span><br><span class="line">                ans += count * sumFromXtoY(inventory[n], inventory[n]-layerNumber);</span><br><span class="line">                <span class="keyword">long</span> leftOver = orders%count;</span><br><span class="line">                ans += leftOver * (inventory[n] - layerNumber);</span><br><span class="line">                orders = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// when n = 0, [2,2] orders=2, layerNumber = orders/count = 2/2 = 1, leftOver=0</span></span><br><span class="line">                <span class="comment">// when n = 0, [2,2] orders=4, layerNumber = orders/count = 4/2 = 2, leftOver=2, inventory[n] - layerNumber=0</span></span><br><span class="line">                <span class="comment">// when n = 0, [2,2] orders=6 which won&#x27;t be shown in the test cases. </span></span><br><span class="line">                <span class="comment">// orders/count</span></span><br><span class="line">            &#125;</span><br><span class="line">            ans%=<span class="number">1000000007</span>; <span class="comment">// only when ans &gt; 1000000007 it will work.</span></span><br><span class="line">            count++;</span><br><span class="line">            n--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>) ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// sum from X to Y, don&#x27;t include Y</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">long</span> <span class="title">sumFromXtoY</span><span class="params">(<span class="keyword">long</span> x, <span class="keyword">long</span> y)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (x*(x+<span class="number">1</span>))/<span class="number">2</span> - (y*(y+<span class="number">1</span>))/<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/02/18/JavaScript-CheetSheet/" rel="prev" title="JavaScript-CheetSheet">
+                  <i class="fa fa-chevron-left"></i> JavaScript-CheetSheet
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Guoyi Wang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="//cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

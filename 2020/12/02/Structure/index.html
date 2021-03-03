@@ -24,15 +24,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
   </script>
 
-  <meta name="description" content="HashSetHashMapListLinkedList">
+  <meta name="description" content="HashSetHashMapListLinkedListPriorityQueue Based on a priority heap Internal data structure is not ordered, is a heap. Method poll: Retrieves and removes the head of this queue, or returns null if this">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Data Structure">
 <meta property="og:url" content="http://example.com/2020/12/02/Structure/index.html">
 <meta property="og:site_name" content="Guoyi&#39;s Blog">
-<meta property="og:description" content="HashSetHashMapListLinkedList">
+<meta property="og:description" content="HashSetHashMapListLinkedListPriorityQueue Based on a priority heap Internal data structure is not ordered, is a heap. Method poll: Retrieves and removes the head of this queue, or returns null if this">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-12-03T00:08:44.000Z">
-<meta property="article:modified_time" content="2021-02-10T20:55:30.647Z">
+<meta property="article:modified_time" content="2021-03-03T01:16:17.657Z">
 <meta property="article:author" content="Guoyi Wang">
 <meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
@@ -184,7 +184,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HashSet"><span class="nav-number">1.</span> <span class="nav-text">HashSet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap"><span class="nav-number">2.</span> <span class="nav-text">HashMap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#List"><span class="nav-number">3.</span> <span class="nav-text">List</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LinkedList"><span class="nav-number">4.</span> <span class="nav-text">LinkedList</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HashSet"><span class="nav-number">1.</span> <span class="nav-text">HashSet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap"><span class="nav-number">2.</span> <span class="nav-text">HashMap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#List"><span class="nav-number">3.</span> <span class="nav-text">List</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LinkedList"><span class="nav-number">4.</span> <span class="nav-text">LinkedList</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PriorityQueue"><span class="nav-number">5.</span> <span class="nav-text">PriorityQueue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deque-Double-Ended-Queue"><span class="nav-number">6.</span> <span class="nav-text">Deque (Double Ended Queue)</span></a></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -279,7 +279,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-02-10 15:55:30" itemprop="dateModified" datetime="2021-02-10T15:55:30-05:00">2021-02-10</time>
+        <time title="Modified: 2021-03-02 20:16:17" itemprop="dateModified" datetime="2021-03-02T20:16:17-05:00">2021-03-02</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -301,7 +301,47 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h2><h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h2><h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><h2 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h2>
+        <h2 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h2><h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h2><h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><h2 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h2><h2 id="PriorityQueue"><a href="#PriorityQueue" class="headerlink" title="PriorityQueue"></a>PriorityQueue</h2><ul>
+<li>Based on a priority heap</li>
+<li>Internal data structure is not ordered, is a heap.</li>
+<li>Method<ul>
+<li>poll: Retrieves and removes the <strong>head</strong> of this queue, or returns null if this queue is empty.</li>
+<li>add: Inserts the specified element into this priority queue.<ul>
+<li>comes from <code>Collection</code></li>
+<li>always returns true and throws an exception if it can’t add the element</li>
+</ul>
+</li>
+<li>offer: Inserts the specified element into this priority queue.<ul>
+<li>comes from <code>Queue</code></li>
+<li>is allowed to return false if it can’t add the element.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Deque-Double-Ended-Queue"><a href="#Deque-Double-Ended-Queue" class="headerlink" title="Deque (Double Ended Queue)"></a>Deque (Double Ended Queue)</h2><ul>
+<li>You can enqueue and dequeue from both ends of a Java Deque</li>
+<li>You can use a Deque as both a queue and a stack</li>
+<li>Add Element to Deque：add elements to both the beginning and end of a Deque<ul>
+<li>add()</li>
+<li>addLast()</li>
+<li>addFirst()</li>
+<li>offer()</li>
+<li>offerFirst()</li>
+<li>offerLast()</li>
+<li>push(): adds an element to the beginning (head) of a Java Deque method</li>
+</ul>
+</li>
+<li>Peek at Element in Deque<ul>
+<li>peek()</li>
+<li>peekFirst()</li>
+<li>peekLast()</li>
+<li>getFirst()</li>
+<li>getLast()</li>
+</ul>
+</li>
+</ul>
+
     </div>
 
     

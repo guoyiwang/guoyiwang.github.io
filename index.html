@@ -192,7 +192,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -241,6 +241,288 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/02/Amazon/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Guoyi Wang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guoyi's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/02/Amazon/" class="post-title-link" itemprop="url">Amazon</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-03-02 12:53:04 / Modified: 21:39:10" itemprop="dateCreated datePublished" datetime="2021-03-02T12:53:04-05:00">2021-03-02</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="OA2"><a href="#OA2" class="headerlink" title="OA2"></a>OA2</h1><h2 id="Fill-The-Truck-Maximum-Units"><a href="#Fill-The-Truck-Maximum-Units" class="headerlink" title="Fill The Truck || Maximum Units"></a>Fill The Truck || Maximum Units</h2><ul>
+<li><p>Question statememt:</p>
+<ul>
+<li>Fill a cargo with containers, each container has multiple items. Given the number of containers the cargo can load, write a algorithm to return the maximum number of items that can be shipped</li>
+<li>Input:<ul>
+<li>num: the number of containers</li>
+<li>containers: a list of integers representing the number of containers</li>
+<li>itemSize: an ineger representing size of itemsPerContainer</li>
+<li>itemsPerContainer: a list of integers representing the number of items packed in each container</li>
+<li>cargoSize: a integer representing the number of containers the cargo can carry</li>
+</ul>
+</li>
+<li>Output: return an integer representing the maximum items that can be carried by the cargo.</li>
+</ul>
+</li>
+<li><p>Example</p>
+<ul>
+<li>Inputs<ul>
+<li>num = 3, 3 containers</li>
+<li>containers=[3, 1, 2]</li>
+<li>itemSize=3, the size of itemsPerContainer is 3</li>
+<li>itemsPerContainer=[1, 2, 3]</li>
+<li>cargoSize=4, this cargo could carry 4 containers</li>
+</ul>
+</li>
+<li>Output: 9</li>
+<li>Examplanation<ul>
+<li>There are 3 containers which include 1 item, 1 container which include 2 items, 2 containers which include 3 items.</li>
+<li>Container list, each value means the number of item that this container includes, [3, 3, 1, 1, 1, 2]</li>
+<li>This cargoSize is 4, answer is 3+3+2+1=9</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Solution</p>
+<ul>
+<li>TimeComplexity: O(NlogN), N = num or itemSize</li>
+<li>The length of PriorityQueue maxHeap is num or itemSize</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">fillTheTruck</span><span class="params">(<span class="keyword">int</span> num, <span class="keyword">int</span>[] containers, <span class="keyword">int</span> itemSize, <span class="keyword">int</span>[] itemsPerContainer, <span class="keyword">long</span> cargoSize)</span></span>&#123;</span><br><span class="line">    <span class="comment">// b1,b2 represent one object in this PriorityQuere</span></span><br><span class="line">    <span class="comment">// the first element is containers[i]</span></span><br><span class="line">    <span class="comment">// the second element is itemsPerContainer[i], based the comparation between itemsPerContainer to orders the element in this PriorityQuere</span></span><br><span class="line">    <span class="comment">// (b1,b2) -&gt; b2[1] -b1[1]: if lhs &lt; rhs, return +1, if lhs &gt; rhs, return -1</span></span><br><span class="line">    PriorityQueue&lt;<span class="keyword">int</span>[]&gt; maxHeap = <span class="keyword">new</span> PriorityQueue&lt;&gt;((b1,b2) -&gt; b2[<span class="number">1</span>] -b1[<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num; i++)&#123;</span><br><span class="line">        maxHeap.add(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;containers[i], itemsPerContainer[i]&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(cargoSize &gt; <span class="number">0</span> &amp;&amp; !pq.isEmpty())&#123;</span><br><span class="line">        <span class="keyword">int</span>[] curr = maxHeap.poll();</span><br><span class="line">        <span class="keyword">long</span> containerCargoCanCarry = Math.min(cargoSize, curr[<span class="number">0</span>]);</span><br><span class="line">        cargoSize -= containerCargoCanCarry;</span><br><span class="line">        res += containerCargoCanCarry * curr[<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Subtree-with-Maximum-Average"><a href="#Subtree-with-Maximum-Average" class="headerlink" title="Subtree with Maximum Average"></a>Subtree with Maximum Average</h2><ul>
+<li><p>Question statement: Given an N-ary tree, find the subtree with the maximum average. Return the root of the subtree.<br>A subtree of a tree is the node which have <strong>at least 1 child</strong> plus all its descendants. The average value of a subtree is the sum of its values, divided by the number of nodes.</p>
+</li>
+<li><p>Example:</p>
+<ul>
+<li><img src="../images/subtree_with_maximum_average.png">
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">solution</span></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> maxAvg = Integer.MIN_VALUE;</span><br><span class="line">    TreeNode maxNode = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">maximumAverageSubtree</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        findRootWithMaxAverage(root);</span><br><span class="line">        <span class="keyword">return</span> maxNode;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span>[] findRootWithMaxAverage(TreeNode root)&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">double</span>[]&#123;<span class="number">0</span>, <span class="number">0</span>&#125;;</span><br><span class="line">        <span class="keyword">if</span>(root.children == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">double</span>[]&#123;root.val, <span class="number">1</span>&#125;;</span><br><span class="line">        <span class="keyword">double</span> currSum = root.val;</span><br><span class="line">        <span class="keyword">double</span> currCount = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(TreeNode child: root.children)&#123;</span><br><span class="line">            <span class="comment">// subTreeInfo records the sum of each node in a subtree and the number of nodes in this subtree</span></span><br><span class="line">            <span class="keyword">double</span>[] subTreeInfo = findRootWithMaxAverage(child);</span><br><span class="line">            currSum += subTreeInfo[<span class="number">0</span>];</span><br><span class="line">            currCount += subTreeInfo[<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">double</span> currAvg = currSum/currCount;</span><br><span class="line">        <span class="keyword">if</span>(currCount &gt; <span class="number">1</span> &amp;&amp; currAvg &gt; maxAvg)&#123;</span><br><span class="line">            maxAvg = currAvg;</span><br><span class="line">            maxNode = root;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">double</span>[]&#123;sum, count&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Similary Question: <a target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-average-subtree">https://leetcode.com/problems/maximum-average-subtree</a></p>
+<ul>
+<li>A node also could be treated as a subtree</li>
+<li>children of one node only have left child and right child.</li>
+<li>Time Complexity: O(N)</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="keyword">double</span> max = Integer.MIN_VALUE;</span><br><span class="line">  TreeNode maxNode = <span class="keyword">null</span>;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">maximumAverageSubtree</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">      findRootWithMaxAverage(root);</span><br><span class="line">      <span class="keyword">return</span> max;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">double</span>[] findRootWithMaxAverage(TreeNode root)&#123;</span><br><span class="line">      <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">double</span>[]&#123;<span class="number">0</span>, <span class="number">0</span>&#125;;</span><br><span class="line">      <span class="keyword">double</span> currSum = root.val;</span><br><span class="line">      <span class="keyword">double</span> currCount = <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">double</span>[] leftSubTree = findRootWithMaxAverage(root.left);</span><br><span class="line">      currSum += leftSubTree[<span class="number">0</span>];</span><br><span class="line">      currCount += leftSubTree[<span class="number">1</span>];</span><br><span class="line">      </span><br><span class="line">      <span class="keyword">double</span>[] rightSubTree = findRootWithMaxAverage(root.right);</span><br><span class="line">      currSum += rightSubTree[<span class="number">0</span>];</span><br><span class="line">      currCount += rightSubTree[<span class="number">1</span>];</span><br><span class="line">      </span><br><span class="line">      <span class="keyword">double</span> currAvg = currSum/currCount;</span><br><span class="line">      <span class="keyword">if</span>(currAvg &gt; max)&#123;</span><br><span class="line">          max = currAvg;</span><br><span class="line">          maxNode = root;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">double</span>[]&#123;currSum, currCount&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Disk-Space-Analysis"><a href="#Disk-Space-Analysis" class="headerlink" title="Disk Space Analysis"></a>Disk Space Analysis</h2><ul>
+<li><p>Simiary Question in Leetcode: <a target="_blank" rel="noopener" href="https://leetcode.com/problems/sliding-window-maximum/">https://leetcode.com/problems/sliding-window-maximum/</a></p>
+</li>
+<li><p>Problem statement</p>
+<ul>
+<li>Input:<ul>
+<li>numComputer: an integer representing the number of computers</li>
+<li>hardDiskSpace: a list of integers representing the hard disk space of the computers</li>
+<li>segmentLength: an integer representing the length of the contiguous segment of computers to be considered in each iteration</li>
+</ul>
+</li>
+<li>Output:<ul>
+<li>Return an integer representing the maximum available disk space among all the minima that are found during the analysis</li>
+</ul>
+</li>
+<li>Example<ul>
+<li>numComputer: 4</li>
+<li>hardDiskSpace: [8, 2, 4, 5]</li>
+<li>segmentLength: 2</li>
+<li>The size of each block is 2. [8, 2], [2, 4], and [4, 5]</li>
+<li>The minima avaialbe space of each block is 2, 2, 4.</li>
+<li>The maximum available disk among all minima is 4.找到最小数中的最大数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Solution</p>
+<ul>
+<li><p>Brute Force</p>
+<ul>
+<li>There are <code>numComputer - segmentLength + 1</code> sliding windows</li>
+<li>There are <code>segmentLength</code> elements in each windows</li>
+<li>Time Complexity: O(n*k), n: numComputer, k: segmentLength</li>
+<li>Space Complexity: O(n - k + 1) for the sliding windows</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> max = Integer.MIN_VALUE;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">maxInMinimal</span><span class="params">(<span class="keyword">int</span> numComputer, <span class="keyword">int</span>[] hardDiskSpace, <span class="keyword">int</span> segmentLength)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(numComputer * segmentLength == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numComputer - segmentLength + <span class="number">1</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> min = Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i; j &lt; i+segmentLength; j++)&#123;</span><br><span class="line">            min = Math.min(min, hardDiskSpace[j]);<span class="comment">// the min in each window</span></span><br><span class="line">        &#125;</span><br><span class="line">        max = Math.max(max, min); <span class="comment">//save the bigger &quot;min&quot; in each window</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max; </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Deque(Double Ended Queue):</p>
+<ul>
+<li>Time Complexity: O(n), n is <code>hardDiskSpace.length</code></li>
+<li>Extra Space Complexity: O(k), k is <code>segmentLength</code></li>
+<li>deque is used to save the indexes of elements in the current sliding window</li>
+<li>删去超出范围: If an element in the deque and it is out of i-(k-1), discard them from the <strong>head</strong> of deque</li>
+<li>删去deque里过大的值: For the elements within <code>[i-(k-1), i]</code> which in the deque:<ul>
+<li>If <code>hardDiskSpace[ i ] &lt;  hardDiskSpace[deque.peekLast()]</code><ul>
+<li>deque.removeLast(): delete this index from the <strong>end</strong> of deque</li>
+<li>save <code>i</code> in the <strong>head</strong> of deque</li>
+<li>deque.peekFirst() is always the minimum in the current sliding window.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">maxInMinimal</span><span class="params">(<span class="keyword">int</span> numComputer, <span class="keyword">int</span>[] hardDiskSpace, <span class="keyword">int</span> segmentLength)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> maxValue = Integer.MIN_VALUE;</span><br><span class="line">    Deque&lt;Integer&gt; deque = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numComputer; i++)&#123;</span><br><span class="line">        <span class="comment">// the elements in deque are only in the current sliding window -- [i - segmentLength + 1, i]</span></span><br><span class="line">        <span class="keyword">while</span>(!deque.isEmpty() &amp;&amp; deque.peekFirst() &lt; i - segmentLength + <span class="number">1</span>)&#123;</span><br><span class="line">            deque.poll();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// delete the index in deque</span></span><br><span class="line">        <span class="comment">// if the value of this index is bigger than hardDiskSpace[i] which i is plan to join deque</span></span><br><span class="line">        <span class="keyword">while</span>(!deque.isEmpty() &amp;&amp; hardDiskSpace[i] &lt; hardDiskSpace[deque.peekLast()])&#123;</span><br><span class="line">            deque.removeLast();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// the head of deque&#x27;s value is always the minimun in the current sliding window</span></span><br><span class="line">        deque.offerLast(i);</span><br><span class="line">        <span class="keyword">if</span>( i &gt;= segmentLength - <span class="number">1</span>)&#123; <span class="comment">// i - k + 1&gt;=0, the first window is created</span></span><br><span class="line">            maxValue = Math.max(maxValue, hardDiskSpace[deque.peekFirst()]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxValue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Nearest-City"><a href="#Nearest-City" class="headerlink" title="Nearest City"></a>Nearest City</h2><h2 id="Max-Profit-Sell-Diminishing-Valued-Colored-Balls"><a href="#Max-Profit-Sell-Diminishing-Valued-Colored-Balls" class="headerlink" title="Max Profit || Sell Diminishing-Valued Colored Balls"></a>Max Profit || Sell Diminishing-Valued Colored Balls</h2><ul>
+<li><p>Question:</p>
+<ul>
+<li>inventory: [ 2, 8, 4, 10, 6, 6]</li>
+<li>orders: 20(the number of item you need get from this inventory)</li>
+<li>The profit of each item in the inventory = the number of items</li>
+<li>How to get the max profite after get the orders items?</li>
+</ul>
+</li>
+<li><p>Example</p>
+<ul>
+<li>Reorder: [ 2, 8, 4, 10, 6, 6] -&gt; [2, 4, 6, 6, 8, 10]</li>
+<li>n=5(The max profit item is 10, which is index is 5) — count=1(only one 10) — orders=20<ul>
+<li>inventory[ n ] - inventory[ n-1 ] = 10 - 8 &gt; 0</li>
+<li>orders -= count X (inventory[ n ] - inventory[ n-1 ]), orders = 20-1*2=18</li>
+<li>count ++</li>
+<li>The result is 10, 9</li>
+<li>The inventory is [2, 4, 6, 6, 8, 8]</li>
+</ul>
+</li>
+<li>n=4 (The max profit item is 8, which is index is 4) — count=2 (two 8) — orders=18<ul>
+<li>inventory[ n ] - inventory[ n-1 ] = 8 - 6 = 2 &gt; 0</li>
+<li>orders -= count X (inventory[ n ] - inventory[ n-1 ]), orders = 18-2*2=14</li>
+<li>count ++</li>
+<li>The result is 10, 9, 8, 8, 7, 7</li>
+<li>The inventory is [2, 4, 6, 6, 6, 6]</li>
+</ul>
+</li>
+<li>n=3 (The max profit item is 6, which is index is 3) — count=3 — orders=14<ul>
+<li>inventory[ n ] - inventory[ n-1 ] = 6 - 6 = 0 &gt; 0 (false)</li>
+<li>Nothing change, onky n– and count++</li>
+</ul>
+</li>
+<li>n=2 (The max profit item is 6, which is index is 2) — count=4 — orders=14<ul>
+<li>inventory[ n ] - inventory[ n-1 ] = 6 - 4 = 2 &gt; 0</li>
+<li>orders -= count X (inventory[ n ] - inventory[ n-1 ]), orders = 14-2*4=6</li>
+<li>count ++</li>
+<li>The result is 10, 9, 8, 8, 7, 7, 6, 6, 6, 6, 5, 5, 5, 5</li>
+<li>The inventory is [2, 4, 4, 4, 4, 4]</li>
+</ul>
+</li>
+<li>n=1 (The max profit item is 4, which is index is 1) — count=5 — orders=6<ul>
+<li>inventory[ n ] - inventory[ n-1 ] = 4 - 2 = 2 &gt; 0</li>
+<li>orders -= count X (inventory[ n ] - inventory[ n-1 ]), orders = 6-2*5=-4 (false)</li>
+<li>when orders &lt; count X (inventory[ n ] - inventory[ n-1 ])<ul>
+<li>only partial of [4, 4, 4, ,4, 4, 3, 3, 3, 3, 3] are needed</li>
+<li>First: orders/count decide the layer of item are need, like 6/5=1, the first layer of 4 are taken [4, 4, 4, 4, 4]<ul>
+<li>5*4 = count * sumFromXtoY(inventory[ n ], inventory[ n ] - a)</li>
+</ul>
+</li>
+<li>Second: orders%count decide the leftover of items, like 6%5=1, only get [ 3 ] in [3, 3, 3, 3, 3]<ul>
+<li>3 = orders%count * (inventory[ n ] - a);</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>orders = 0</li>
+<li>The result is 10, 9, 8, 8, 7, 7, 6, 6, 6, 6, 5, 5, 5, 5, 4, 4, 4, 4, 4, 3</li>
+<li>The inventory is [2, 2, 3, 3, 3, 3]</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Solution:</p>
+<ul>
+<li><p>Order the inventory first: [2, 4, 6, 6, 8, 10], orders is 20</p>
+</li>
+<li><p>The answer should be 10, 9, 8, 8, 7, 7, 6, 6, 6, 6, 5, 5, 5, 5, 4, 4, 4, 4, 4, 3</p>
+</li>
+<li><p>orders: how many item need from inventory</p>
+<ul>
+<li>Initial: is provided in the question</li>
+<li>Change: <code>orders -= count * (inventory[n] - inventory[n-1])</code></li>
+<li>Decide the loop is end or not: while(orders&gt;0)</li>
+</ul>
+</li>
+<li><p>n: the end index of this inventory</p>
+<ul>
+<li>Initial: <code>inventory.length - 1</code></li>
+<li>Change: n– in each loop</li>
+</ul>
+</li>
+<li><p>count: record the number of the item with max profit in the level</p>
+<ul>
+<li>Initial: 1</li>
+<li>Change: count++ in each loop</li>
+</ul>
+</li>
+<li><p>TimeComplexity: nlg(n)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] inventory, <span class="keyword">int</span> orders)</span></span>&#123;</span><br><span class="line">        Arrays.sort(inventory);</span><br><span class="line">        <span class="keyword">long</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> n = inventory.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">long</span> count = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(orders &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>( n&gt;<span class="number">0</span> &amp;&amp; inventory[n] - inventory[n-<span class="number">1</span>] &gt; <span class="number">0</span> &amp;&amp; orders &gt;= count * (inventory[n] - inventory[n-<span class="number">1</span>]))&#123;</span><br><span class="line">                orders -= count * (inventory[n] - inventory[n-<span class="number">1</span>]);</span><br><span class="line">                ans += count * sumFromXtoY(inventory[n], inventory[n-<span class="number">1</span>]);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(n==<span class="number">0</span> || orders &lt; count * (inventory[n] - inventory[n-<span class="number">1</span>]))&#123;</span><br><span class="line">                <span class="keyword">long</span> layerNumber = orders/count;</span><br><span class="line">                ans += count * sumFromXtoY(inventory[n], inventory[n]-layerNumber);</span><br><span class="line">                <span class="keyword">long</span> leftOver = orders%count;</span><br><span class="line">                ans += leftOver * (inventory[n] - layerNumber);</span><br><span class="line">                orders = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// when n = 0, [2,2] orders=2, layerNumber = orders/count = 2/2 = 1, leftOver=0</span></span><br><span class="line">                <span class="comment">// when n = 0, [2,2] orders=4, layerNumber = orders/count = 4/2 = 2, leftOver=2, inventory[n] - layerNumber=0</span></span><br><span class="line">                <span class="comment">// when n = 0, [2,2] orders=6 which won&#x27;t be shown in the test cases. </span></span><br><span class="line">                <span class="comment">// orders/count</span></span><br><span class="line">            &#125;</span><br><span class="line">            ans%=<span class="number">1000000007</span>; <span class="comment">// only when ans &gt; 1000000007 it will work.</span></span><br><span class="line">            count++;</span><br><span class="line">            n--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>) ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// sum from X to Y, don&#x27;t include Y</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">long</span> <span class="title">sumFromXtoY</span><span class="params">(<span class="keyword">long</span> x, <span class="keyword">long</span> y)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (x*(x+<span class="number">1</span>))/<span class="number">2</span> - (y*(y+<span class="number">1</span>))/<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/18/JavaScript-CheetSheet/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -265,10 +547,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2021-02-18 08:03:38 / Modified: 09:10:42" itemprop="dateCreated datePublished" datetime="2021-02-18T08:03:38-05:00">2021-02-18</time>
+      <time title="Created: 2021-02-18 08:03:38" itemprop="dateCreated datePublished" datetime="2021-02-18T08:03:38-05:00">2021-02-18</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-02-21 16:40:19" itemprop="dateModified" datetime="2021-02-21T16:40:19-05:00">2021-02-21</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -325,11 +613,13 @@
 </li>
 <li><p><font color="#FF0000" size="6px">let</font>: new ES6 features</p>
 <ul>
-<li>ES6 introduced two new keywords <strong>let</strong> and <strong>const</strong> for declaring variables</li>
-<li>Variables declared using let and const are also hoisted, but the variables are not initialized with undefined.</li>
-</ul>
+<li><p>ES6 introduced two new keywords <strong>let</strong> and <strong>const</strong> for declaring variables</p>
+</li>
+<li><p>Variables declared using let and const are also hoisted, but the variables are not initialized with undefined.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"><span class="comment">// Reference Error</span></span><br><span class="line"><span class="comment">// since &quot;a&quot; was used before it declared which is illegal for &#x27;let&#x27; variables </span></span><br><span class="line"><span class="keyword">let</span> a = <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
 
+</li>
+</ul>
 </li>
 </ul>
 <h4 id="Creating-global-object-property"><a href="#Creating-global-object-property" class="headerlink" title="Creating global object property"></a>Creating global object property</h4><ul>
@@ -340,14 +630,42 @@
 
 </li>
 </ul>
-<h3 id="Redeclaration"><a href="#Redeclaration" class="headerlink" title="Redeclaration"></a>Redeclaration</h3><ul>
+<h4 id="Redeclaration"><a href="#Redeclaration" class="headerlink" title="Redeclaration"></a>Redeclaration</h4><ul>
 <li><p><font color="#00FF00" size="6px">var</font>: let you re-declare the same variable in the same scope</p>
 </li>
 <li><p><font color="#FF0000" size="6px">let</font>: raises a SyntaxError</p>
   <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#x27;use strict&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> foo = <span class="string">&quot;foo1&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> foo = <span class="string">&quot;foo2&quot;</span>; <span class="comment">// No problem, &#x27;foo&#x27; is replaced.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> bar = <span class="string">&quot;bar1&quot;</span>;</span><br><span class="line"><span class="keyword">let</span> bar = <span class="string">&quot;bar2&quot;</span>; <span class="comment">// SyntaxError: Identifier &#x27;bar&#x27; has already been declared</span></span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
+<h3 id="Different-between-for…in-and-for…of"><a href="#Different-between-for…in-and-for…of" class="headerlink" title="Different between for…in and for…of"></a>Different between for…in and for…of</h3><ul>
+<li><p><font color="#00FF00" size="6px">for…in</font>: iterates over all enumerable property keys of an object</p>
+</li>
+<li><p><font color="#FF0000" size="6px">for…of</font>: iterates over the values of an iterable object. Examples of iterable objects are arrays, strings, and NodeLists. 只会循环一类object, 如果array里面有一个object，只会循环其中只是array element的对象。比如[“el1”, “el2”, “el3”, addedProp: “arrProp”], 只循环”el1”, “el2”, “el3”.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">&#x27;el1&#x27;</span>, <span class="string">&#x27;el2&#x27;</span>, <span class="string">&#x27;el3&#x27;</span>];</span><br><span class="line"></span><br><span class="line">arr.addedProp = <span class="string">&#x27;arrProp&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// elKey are the property keys</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> elKey <span class="keyword">in</span> arr) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(elKey);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// out put</span></span><br><span class="line"><span class="comment">// 0</span></span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// addedProf</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// elValue are the property values</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> elValue <span class="keyword">of</span> arr) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(elValue)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// out put</span></span><br><span class="line"><span class="comment">// el1</span></span><br><span class="line"><span class="comment">// el2</span></span><br><span class="line"><span class="comment">// el3</span></span><br></pre></td></tr></table></figure>
 
+</li>
+</ul>
+<h3 id="Expressions-and-operators"><a href="#Expressions-and-operators" class="headerlink" title="Expressions and operators"></a>Expressions and operators</h3><h4 id="Destructuring-assignment"><a href="#Destructuring-assignment" class="headerlink" title="Destructuring assignment"></a>Destructuring assignment</h4><ul>
+<li><p>unpack values from arrays, or properties from objects, into distinct variables.</p>
+<ul>
+<li><p>swapping value</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> b = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">[a, b] = [b, a];</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// 3</span></span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">[arr[<span class="number">2</span>], arr[<span class="number">1</span>]] = [arr[<span class="number">1</span>], arr[<span class="number">2</span>]];</span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">// [1,3,2]</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Assigning the rest of an array to a variable</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [a, ...b] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">// [2, 3]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Assigning to new variable names</p>
+<ul>
+<li>const {p: foo} = o takes from the object o the property named p and assigns it to a local variable named foo.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> o = &#123;<span class="attr">p</span>: <span class="number">42</span>, <span class="attr">q</span>: <span class="literal">true</span>&#125;;</span><br><span class="line"><span class="keyword">const</span> &#123;<span class="attr">p</span>: foo, <span class="attr">q</span>: bar&#125; = o;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(foo); <span class="comment">// 42</span></span><br><span class="line"><span class="built_in">console</span>.log(bar); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Callback"><a href="#Callback" class="headerlink" title="Callback"></a>Callback</h3>
       
     </div>
 
@@ -405,7 +723,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-02-17 23:33:14" itemprop="dateModified" datetime="2021-02-17T23:33:14-05:00">2021-02-17</time>
+        <time title="Modified: 2021-02-21 16:47:07" itemprop="dateModified" datetime="2021-02-21T16:47:07-05:00">2021-02-21</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -530,10 +848,28 @@
 </ul>
 <h3 id="Using-Ref-like-id-Not-be-recommended-anymore"><a href="#Using-Ref-like-id-Not-be-recommended-anymore" class="headerlink" title="Using Ref like id(Not be recommended anymore)"></a>Using Ref like id(Not be recommended anymore)</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建组件</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">  <span class="comment">//展示左侧输入框的数据</span></span><br><span class="line">  showData = <span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;input1&#125; = <span class="built_in">this</span>.refs <span class="comment">// input1 is the DOM node</span></span><br><span class="line">    alert(input1.value)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//展示右侧输入框的数据</span></span><br><span class="line">  showData2 = <span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;input2&#125; = <span class="built_in">this</span>.refs</span><br><span class="line">    alert(input2.value)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="title">render</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span>(</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;input ref=<span class="string">&quot;input1&quot;</span> type=<span class="string">&quot;text&quot;</span> placeholder=<span class="string">&quot;点击按钮提示数据&quot;</span>/&gt;&amp;nbsp;</span><br><span class="line">        &lt;button onClick=&#123;<span class="built_in">this</span>.showData&#125;&gt;点我提示左侧的数据&lt;/button&gt;&amp;nbsp;</span><br><span class="line">        &lt;input ref=<span class="string">&quot;input2&quot;</span> onBlur=&#123;<span class="built_in">this</span>.showData2&#125; type=<span class="string">&quot;text&quot;</span> placeholder=<span class="string">&quot;失去焦点提示数据&quot;</span>/&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//渲染组件到页面</span></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">Demo</span> <span class="attr">a</span>=<span class="string">&quot;1&quot;</span> <span class="attr">b</span>=<span class="string">&quot;2&quot;</span>/&gt;</span></span>,<span class="built_in">document</span>.getElementById(<span class="string">&#x27;test&#x27;</span>))</span><br></pre></td></tr></table></figure>
 
-<h3 id="Callback-Refs"><a href="#Callback-Refs" class="headerlink" title="Callback Refs"></a>Callback Refs</h3><ul>
-<li><h2 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h2></li>
+<h3 id="Callback-Refs"><a href="#Callback-Refs" class="headerlink" title="Callback Refs"></a>Callback Refs</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建组件</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">  <span class="comment">//展示左侧输入框的数据</span></span><br><span class="line">  showData = <span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;input1&#125; = <span class="built_in">this</span></span><br><span class="line">    alert(input1.value)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//展示右侧输入框的数据</span></span><br><span class="line">  showData2 = <span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;input2&#125; = <span class="built_in">this</span></span><br><span class="line">    alert(input2.value)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="title">render</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span>(</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;input ref=&#123;<span class="function"><span class="params">c</span> =&gt;</span> <span class="built_in">this</span>.input1 = c &#125; type=<span class="string">&quot;text&quot;</span> placeholder=<span class="string">&quot;点击按钮提示数据&quot;</span>/&gt;&amp;nbsp;</span><br><span class="line">        &lt;button onClick=&#123;<span class="built_in">this</span>.showData&#125;&gt;点我提示左侧的数据&lt;/button&gt;&amp;nbsp;</span><br><span class="line">        &lt;input onBlur=&#123;<span class="built_in">this</span>.showData2&#125; ref=&#123;<span class="function"><span class="params">c</span> =&gt;</span> <span class="built_in">this</span>.input2 = c &#125; type=<span class="string">&quot;text&quot;</span> placeholder=<span class="string">&quot;失去焦点提示数据&quot;</span>/&gt;&amp;nbsp;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//渲染组件到页面</span></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">Demo</span> <span class="attr">a</span>=<span class="string">&quot;1&quot;</span> <span class="attr">b</span>=<span class="string">&quot;2&quot;</span>/&gt;</span></span>,<span class="built_in">document</span>.getElementById(<span class="string">&#x27;test&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<h2 id="Router"><a href="#Router" class="headerlink" title="Router"></a>Router</h2><h3 id="SPA"><a href="#SPA" class="headerlink" title="SPA"></a>SPA</h3><ul>
+<li>单页面应用<ul>
+<li>单页Web应用（single page web application，SPA）。</li>
+<li>整个应用只有一个完整的页面 （一个html file）</li>
+<li>点击页面中的链接<strong>不会刷新</strong>页面，只会做页面的<strong>局部更新</strong>。</li>
+<li>数据都需要通过ajax请求获取, 并在前端异步展现。</li>
 </ul>
-<img src="../images/redux.png" width="600" height="300">
+</li>
+<li>多页面应用<ul>
+<li>about 和 home各自是不同的html file，跳转时刷新页面</li>
+<li><img src="../images/multiple_pages_app.png" width=400 height = 200>
+
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h2><img src="../images/redux.png" width="600" height="300">
+
+
+
 
       
     </div>
@@ -961,7 +1297,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-02-10 15:55:30" itemprop="dateModified" datetime="2021-02-10T15:55:30-05:00">2021-02-10</time>
+        <time title="Modified: 2021-03-02 20:16:17" itemprop="dateModified" datetime="2021-03-02T20:16:17-05:00">2021-03-02</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -983,7 +1319,47 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h2><h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h2><h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><h2 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h2>
+          <h2 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h2><h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h2><h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><h2 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h2><h2 id="PriorityQueue"><a href="#PriorityQueue" class="headerlink" title="PriorityQueue"></a>PriorityQueue</h2><ul>
+<li>Based on a priority heap</li>
+<li>Internal data structure is not ordered, is a heap.</li>
+<li>Method<ul>
+<li>poll: Retrieves and removes the <strong>head</strong> of this queue, or returns null if this queue is empty.</li>
+<li>add: Inserts the specified element into this priority queue.<ul>
+<li>comes from <code>Collection</code></li>
+<li>always returns true and throws an exception if it can’t add the element</li>
+</ul>
+</li>
+<li>offer: Inserts the specified element into this priority queue.<ul>
+<li>comes from <code>Queue</code></li>
+<li>is allowed to return false if it can’t add the element.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Deque-Double-Ended-Queue"><a href="#Deque-Double-Ended-Queue" class="headerlink" title="Deque (Double Ended Queue)"></a>Deque (Double Ended Queue)</h2><ul>
+<li>You can enqueue and dequeue from both ends of a Java Deque</li>
+<li>You can use a Deque as both a queue and a stack</li>
+<li>Add Element to Deque：add elements to both the beginning and end of a Deque<ul>
+<li>add()</li>
+<li>addLast()</li>
+<li>addFirst()</li>
+<li>offer()</li>
+<li>offerFirst()</li>
+<li>offerLast()</li>
+<li>push(): adds an element to the beginning (head) of a Java Deque method</li>
+</ul>
+</li>
+<li>Peek at Element in Deque<ul>
+<li>peek()</li>
+<li>peekFirst()</li>
+<li>peekLast()</li>
+<li>getFirst()</li>
+<li>getLast()</li>
+</ul>
+</li>
+</ul>
+
       
     </div>
 
