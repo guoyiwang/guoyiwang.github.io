@@ -267,7 +267,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2021-03-14 17:31:51 / Modified: 20:33:27" itemprop="dateCreated datePublished" datetime="2021-03-14T17:31:51-04:00">2021-03-14</time>
+      <time title="Created: 2021-03-14 17:31:51 / Modified: 22:48:33" itemprop="dateCreated datePublished" datetime="2021-03-14T17:31:51-04:00">2021-03-14</time>
     </span>
 
   
@@ -281,11 +281,13 @@
     
     <div class="post-body" itemprop="articleBody">
           <h2 id="Select-Question"><a href="#Select-Question" class="headerlink" title="Select Question"></a>Select Question</h2><ul>
-<li>Which of the following is (are) valid server response formats?<ul>
+<li><p>Which of the following is (are) valid server response formats?</p>
+<ul>
 <li>XML, JSON, CSV</li>
 </ul>
 </li>
-<li>Which of the following rules should be followed to design a good URI?<ul>
+<li><p>Which of the following rules should be followed to design a good URI?</p>
+<ul>
 <li>&#x2611; URIs should never be changed</li>
 <li>&#x2612; URIs must be constructed by the client</li>
 <li>&#x2611; Short</li>
@@ -295,13 +297,15 @@
 <li>&#x2612; Redirection must be used if a change in URI is required ????</li>
 </ul>
 </li>
-<li>Which of the following statements are correct according to the specifications of the RESTful services? Select 1 or more of the statements below.<ul>
+<li><p>Which of the following statements are correct according to the specifications of the RESTful services? Select 1 or more of the statements below.</p>
+<ul>
 <li>&#x2612; PUT and POST methods are idempotent in nature. Post is not idempotent.</li>
-<li>&#x2612; POST <a target="_blank" rel="noopener" href="http://api.example.com/devices/create/%7Bdevice-id%7D?new=true">http://api.example.com/devices/create/{device-id}?new=true</a> is a valid API request. Post should new a id, the id shouldn’t be in the url</li>
+<li>&#x2612; POST “<a target="_blank" rel="noopener" href="http://api.example.com/devices/create/%7Bdevice-id%7D?new=true&quot;">http://api.example.com/devices/create/{device-id}?new=true&quot;</a> is a valid API request. Post should new a id, the id shouldn’t be in the url</li>
 <li>&#x2611; POST requests are made on resource collections whereas PUT requests are made on an<br>individual resource</li>
 </ul>
 </li>
-<li>Select the Architectural Constraints of REST API:<ul>
+<li><p>Select the Architectural Constraints of REST API:</p>
+<ul>
 <li>Uniform interface<ul>
 <li>A resource in the system should have only one logical URI, and that should provide a way to fetch related or additional data. It’s always better to synonymize a resource with a web page.</li>
 <li>should follow specific guidelines such as naming conventions, link formats, or data format (XML or/and JSON).</li>
@@ -327,9 +331,115 @@
 </ul>
 </li>
 <li>Code on demand (optional)<ul>
-<li> you will be sending the static representations of resources in the form of XML or JSON. But when you need to, you are free to return executable code to support a part of your application, e.g., clients may call your API to get a UI widget rendering code. It is permitted.</li>
+<li>you will be sending the static representations of resources in the form of XML or JSON. But when you need to, you are free to return executable code to support a part of your application, e.g., clients may call your API to get a UI widget rendering code. It is permitted.</li>
 </ul>
 </li>
+</ul>
+</li>
+<li><p>Request Content-Type header</p>
+<ul>
+<li><p>The media type of any resource is declared in the Content-Type property of the request header (on the client, when making a request to the server) or in the response header (on the server, when sending a response).</p>
+</li>
+<li><p>Media Types: Media types exist in various forms. They are categorized into various groups. All these types cover various data types like text, audio, images, HTML, and many more types that are used across the internet.</p>
+<ul>
+<li><p>application</p>
+<ul>
+<li><p>application/json</p>
+</li>
+<li><p>application/x-www-form-urlencoded</p>
+<ul>
+<li><p>the keys and values are encoded in key-value tuples separated by ‘&amp;’, with a ‘=’ between the key and the value. Non-alphanumeric characters in both keys and values are percent encoded: this is the reason why this type is not suitable to use with binary data (use multipart/form-data instead)</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">POST /test HTTP/<span class="number">1.1</span></span><br><span class="line">Host: foo.example</span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line">Content-Length: <span class="number">27</span></span><br><span class="line"></span><br><span class="line">field1=value1&amp;field2=value2</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>audio</p>
+</li>
+<li><p>font</p>
+</li>
+<li><p>example</p>
+</li>
+<li><p>image</p>
+</li>
+<li><p>message</p>
+</li>
+<li><p>model</p>
+</li>
+<li><p>multipart</p>
+<ul>
+<li><p>multipart/form-data</p>
+<ul>
+<li><p>each value is sent as a block of data (“body part”), with a user agent-defined delimiter (“boundary”) separating each part. The keys are given in the Content-Disposition header of each part.</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">POST /test HTTP/<span class="number">1.1</span></span><br><span class="line">Host: foo.example</span><br><span class="line">Content-Type: multipart/form-data;boundary=<span class="string">&quot;boundary&quot;</span></span><br><span class="line"></span><br><span class="line">--boundary</span><br><span class="line">Content-Disposition: form-data; name=<span class="string">&quot;field1&quot;</span></span><br><span class="line"></span><br><span class="line">value1</span><br><span class="line">--boundary</span><br><span class="line">Content-Disposition: form-data; name=<span class="string">&quot;field2&quot;</span>; filename=<span class="string">&quot;example.txt&quot;</span></span><br><span class="line"></span><br><span class="line">value2</span><br><span class="line">--boundary--</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>text</p>
+<ul>
+<li>text/plain</li>
+</ul>
+</li>
+<li><p>video</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>REST Services</p>
+<ul>
+<li>&#x2611; Logical URLs should be used instead of physical URLs<ul>
+<li><a target="_blank" rel="noopener" href="http://www.parts-depot.com/parts/00345">http://www.parts-depot.com/parts/00345</a> is a logical URL, not a physical URL</li>
+</ul>
+</li>
+<li>&#x2611; Actual URLs must always be used in REST response</li>
+<li>&#x2612; A paging technique should be used if the output data is small</li>
+<li>&#x2611; Get requests must be read only</li>
+<li>&#x2611; Output format can be changed<ul>
+<li>It depends on the header</li>
+</ul>
+</li>
+<li>&#x2612; POST requests must be read only</li>
+<li>Relative knowledges<ul>
+<li>REST<ul>
+<li>RESTfull webservices are based on two factors:<ul>
+<li>URLS - The urls should be based on the resources. Like: /app/students, /app/students/{id}</li>
+<li>METHODS - The method defines the operation to be done on the url. Like<ul>
+<li>GET - To get resource</li>
+<li>PUT - To insert a record</li>
+<li>POST - To update a record</li>
+<li>DELETE - To delete a record.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Which of the following headers can potentially show a resource to be loaded from cache?</p>
+<ul>
+<li>Ref: HTTP caching <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching">https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching</a></li>
+<li>Etag: W/“0815”</li>
+</ul>
+</li>
+<li><p>Idempotent HTTP methods</p>
+<ul>
+<li>GET</li>
+<li>HEAD</li>
+<li>PUT</li>
+<li>DELETE</li>
+</ul>
+</li>
+<li><p>Non-idempotent HTTP methods</p>
+<ul>
+<li>POST</li>
+<li>PATCH</li>
 </ul>
 </li>
 </ul>
@@ -409,6 +519,53 @@
 </li>
 <li><p>Return the last element of the array.</p>
   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Java program to implement </span></span><br><span class="line"><span class="comment">// the above approach </span></span><br><span class="line"><span class="keyword">import</span> java.io.*; </span><br><span class="line"><span class="keyword">import</span> java.util.*; </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GFG</span></span>&#123; </span><br><span class="line"></span><br><span class="line">    <span class="comment">// Function to find the maximum possible value </span></span><br><span class="line">    <span class="comment">// that can be placed at the last index </span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">maximizeFinalElement</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> n)</span> </span></span><br><span class="line"><span class="function">    </span>&#123; </span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Sort the array elements </span></span><br><span class="line">        <span class="comment">// in ascending order </span></span><br><span class="line">        Arrays.sort(arr); </span><br><span class="line">    </span><br><span class="line">        <span class="comment">// If the first element is </span></span><br><span class="line">        <span class="comment">// is not equal to 1 </span></span><br><span class="line">        <span class="keyword">if</span> (arr[<span class="number">0</span>] != <span class="number">1</span>) </span><br><span class="line">            arr[<span class="number">0</span>] = <span class="number">1</span>; </span><br><span class="line">    </span><br><span class="line">        <span class="comment">// Traverse the array to make </span></span><br><span class="line">        <span class="comment">// difference between adjacent </span></span><br><span class="line">        <span class="comment">// elements &lt;=1 </span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++)  </span><br><span class="line">        &#123; </span><br><span class="line">            <span class="keyword">if</span> (arr[i] - arr[i - <span class="number">1</span>] &gt; <span class="number">1</span>) </span><br><span class="line">            &#123; </span><br><span class="line">                arr[i] = arr[i - <span class="number">1</span>] + <span class="number">1</span>; </span><br><span class="line">            &#125; </span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">return</span> arr[n - <span class="number">1</span>]; </span><br><span class="line">    &#125; </span><br><span class="line">    </span><br><span class="line">    <span class="comment">// Driver Code </span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span> <span class="params">(String[] args)</span>  </span></span><br><span class="line"><span class="function">    </span>&#123;  </span><br><span class="line">        <span class="keyword">int</span> n = <span class="number">4</span>;  </span><br><span class="line">        <span class="keyword">int</span> arr[] = &#123; <span class="number">3</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span> &#125;;  </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> max = maximizeFinalElement(arr, n);  </span><br><span class="line">        System.out.print(max);  </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Bucker Fill</p>
+<ul>
+<li><p>Digital graphics tools often make available a “bucker fill” tool that will only paint adjacent cells in one fill, a modified bucket tool recolors adjacent cells (connected horizontally or vertically but not diagonally) that have the same color. Given a picture represented as a 2-dimensional array of letters representing colors, find the minimum number of fills to completely repaint the picture</p>
+</li>
+<li><p>Examle</p>
+<ul>
+<li>picture = [“aabba”, “aabba”, “aaacb”]</li>
+<li><table>
+<thead>
+<tr>
+<th>a</th>
+<th>a</th>
+<th>b</th>
+<th>b</th>
+<th>a</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>a</td>
+<td>a</td>
+<td>b</td>
+<td>b</td>
+<td>a</td>
+</tr>
+<tr>
+<td>a</td>
+<td>a</td>
+<td>a</td>
+<td>c</td>
+<td>b</td>
+</tr>
+</tbody></table>
+</li>
+<li>There are 5 blocks.</li>
+</ul>
+</li>
+<li><p>Solution</p>
+<ul>
+<li><p>using dfs to visit each node, each time the dfs function is call, it only make the connected nodes be visited.</p>
+</li>
+<li><p>Once the dfs function is end, it means all the connected nodes are visited, it will move to another new unconnected block.</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">main</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    picture  = [<span class="string">&quot;aabba&quot;</span>, <span class="string">&quot;aabba&quot;</span>, <span class="string">&quot;aaacb&quot;</span>];</span><br><span class="line">    <span class="built_in">console</span>.log(strokesRequired(picture));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">strokesRequired</span>(<span class="params">picture</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> numRow = picture.length;</span><br><span class="line">    <span class="keyword">var</span> numColumn = picture[<span class="number">0</span>].length;</span><br><span class="line">    <span class="keyword">let</span> numConnectedComp = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> visited = <span class="keyword">new</span> <span class="built_in">Array</span>(numRow);</span><br><span class="line">    <span class="function"><span class="title">for</span>(<span class="params"><span class="keyword">let</span> i = <span class="number">0</span>; i &lt; numRow; i++</span>)</span>&#123;</span><br><span class="line">        visited[i] = <span class="keyword">new</span> <span class="built_in">Array</span>(numColumn);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">for</span>(<span class="params"><span class="keyword">let</span> i = <span class="number">0</span>; i &lt; numRow; i++</span>)</span>&#123;</span><br><span class="line">        <span class="function"><span class="title">for</span>(<span class="params"><span class="keyword">let</span> j = <span class="number">0</span>; j &lt; numColumn; j++</span>)</span>&#123;</span><br><span class="line">            <span class="function"><span class="title">if</span>(<span class="params">!visited[i][j]</span>)</span>&#123;</span><br><span class="line">                <span class="keyword">let</span> letter = picture[i].charAt(j);</span><br><span class="line">                dfs(picture, i, j, letter);</span><br><span class="line">                numConnectedComp += <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> numConnectedComp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dfs</span>(<span class="params">picture, indexRow, indexColumn, letter</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// index for node to move</span></span><br><span class="line">    <span class="keyword">let</span> rowVal = [-<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>];</span><br><span class="line">    <span class="keyword">let</span> columnVal = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, -<span class="number">1</span>];</span><br><span class="line">    visited[indexRow][indexColumn] = <span class="literal">true</span>;</span><br><span class="line">    <span class="function"><span class="title">for</span>(<span class="params"><span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++</span>)</span>&#123;</span><br><span class="line">        <span class="function"><span class="title">if</span>(<span class="params">isConnect(picture, indexRow + rowVal[i], indexColumn + columnVal[i], letter)</span>)</span>&#123;</span><br><span class="line">            dfs(picture, indexRow + rowVal[i], indexColumn + columnVal[i], letter)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isConnect</span>(<span class="params">picture, indexRow, indexColumn, letter</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (indexRow &gt;=<span class="number">0</span> &amp;&amp; indexRow &lt; numRow) &amp;&amp; (indexColumn &gt;=<span class="number">0</span> &amp;&amp; indexColumn &lt; numColumn) &amp;&amp; (picture[indexRow].charAt(indexColumn) === letter &amp;&amp; !visited[indexRow][indexColumn])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
