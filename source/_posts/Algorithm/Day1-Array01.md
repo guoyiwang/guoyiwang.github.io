@@ -12,6 +12,10 @@ categories:
 - Time Complexity: The Time Complexity of an algorithm/code is not equal to the actual time required to execute a particular code, but **the number of times a statement executes**
 - Space Complexity: The **total amount of memory space** used by an algorithm/program, including the space of input values for execution
 
+## Note
+- If n is 10^5, need take the algorithm time complexity like O(nlogn)
+- If n is 100 or 1000, could use brute force, like O(n^2)
+
 ## 704. Binary Search
 
 ### Iterate
@@ -101,10 +105,9 @@ function recusive(nums, target, left, right){
 ## 27. Remove Element
 
 ### slow pointer and fast pointer
-
 ```
 // fast pointer will find the non-target first
-// slow will still be target
+// slow will still be target item, since slow only move when fast find the non-target item
 // swap
 var removeElement = function(nums, val) {
     let slow = 0;
@@ -119,5 +122,36 @@ var removeElement = function(nums, val) {
 }
 ```
 
-- Time Complexity: O(1)
+### Two pointer, 0 and nums.length-1
+- Need consider more case to pass all test
+  - For the while inside while, need check whether break the outside while condition
+  - After while, nums[right] == val or !== are two cases
+```
+var removeElement = function(nums, val) {
+    let left = 0;
+    let right = nums.length - 1;
+    while(left < right){
+        while(nums[right] == val){
+            right--;
+            if(left >= right){
+                break;
+            }
+        }
+        if(nums[left] !== val){
+            left++;
+        }else{
+            [nums[left], nums[right]]=[nums[right], nums[left]];
+            left++;
+            right--;
+        }
+    }
+    
+    if(nums[right] == val){
+        return right;
+    }
+    return right+1;
+};
+```
+
+- Time Complexity: O(n)
 - Space Complexity: O(1)
