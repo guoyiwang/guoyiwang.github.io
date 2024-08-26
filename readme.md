@@ -1,12 +1,16 @@
 ## Visit https://guoyiwang.github.io/
 
-Create a post
+### Create a post
 
 ```
 hexo new --path Algorithm/Day2-Arra02
 ```
 
-Generate and Serve
+### Insert Image
+```
+![find Intersection In Cycle](/images/findIntersectionInCycle.png)
+```
+### Generate and Serve
 
 ```
 hexo generate
