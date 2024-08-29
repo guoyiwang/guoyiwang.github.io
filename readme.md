@@ -16,3 +16,15 @@ hexo new --path Algorithm/Day2-Arra02
 hexo generate
 hexo serve
 ```
+
+### Leetcode template
+```
+## 
+
+### Node:
+
+### Time Complexity && Space Complexity
+
+- Time Complexity:
+- Space Complexity:
+```
