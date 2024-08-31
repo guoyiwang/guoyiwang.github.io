@@ -1,5 +1,5 @@
 ---
-title: 24. Swap Nodes in Pairs && 19. Remove Nth Node From End of List && 160. Intersection of Two Linked Lists && 142. Linked List Cycle II
+title: Linked List 02
 date: 2024-08-25 17:27:42
 tags:
   - Linked List

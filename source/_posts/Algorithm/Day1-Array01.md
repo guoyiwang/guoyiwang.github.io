@@ -1,5 +1,5 @@
 ---
-title: 704. Binary Search and 27. Remove Element
+title: Array01
 date: 2024-08-15 17:16:41
 tags:
   - Array
@@ -112,13 +112,16 @@ function recusive(nums, target, left, right){
 ## 27. Remove Element
 
 ### Note
+
 - use slow pointer and fast pointer is a smart solution
 
 ### Time Complexity && Space Complexity
+
 - Time Complexity: O(n)
 - Space Complexity: O(1)
 
 #### Slow pointer and fast pointer
+
 ```
 // fast pointer will find the non-target first
 // slow will still be target item, since slow only move when fast find the non-target item

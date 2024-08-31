@@ -1,5 +1,5 @@
 ---
-title: 203. Remove Linked List Elements && 707. Design Linked List && 206. Reverse Linked List
+title: Linked List 01
 date: 2024-08-23 10:19:34
 tags:
   - Linked List
