@@ -25,6 +25,6 @@ hexo serve
 
 ### Time Complexity && Space Complexity
 
-- Time Complexity:
-- Space Complexity:
+- Time Complexity: O()
+- Space Complexity: O()
 ```
