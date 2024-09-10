@@ -10,6 +10,11 @@ hexo new --path Algorithm/Day2-Arra02
 ```
 ![find Intersection In Cycle](/images/findIntersectionInCycle.png)
 ```
+
+### Insert different post
+```
+{% post_link Day1-Array01 %}
+```
 ### Generate and Serve
 
 ```

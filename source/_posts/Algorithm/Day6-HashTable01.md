@@ -1,5 +1,5 @@
 ---
-title: HashTable 01
+title: Day6-HashTable 01
 date: 2024-08-28 22:16:49
 tags:
   - HashTable

@@ -1,5 +1,5 @@
 ---
-title: Linked List 02
+title: Day4-Linked List 02
 date: 2024-08-25 17:27:42
 tags:
   - Linked List

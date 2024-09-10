@@ -1,5 +1,5 @@
 ---
-title: Array01
+title: Day1-Array01
 date: 2024-08-15 17:16:41
 tags:
   - Array

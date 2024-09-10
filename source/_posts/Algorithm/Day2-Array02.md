@@ -1,5 +1,5 @@
 ---
-title: Array02
+title: Day2-Array02
 date: 2024-08-23 09:35:17
 tags:
   - Array
