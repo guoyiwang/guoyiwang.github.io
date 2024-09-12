@@ -20,17 +20,17 @@ categories:
   - Every element is maniplated once
 - Space Complexity: O(1)
 
-```
-var removeElements = function(head, val) {
-    let dummyHead = new ListNode(null, head);
-    const result = dummyHead;
-    while(dummyHead){
-        while(dummyHead.next && dummyHead.next.val === val){
-            dummyHead.next = dummyHead.next.next;
-        }
-        dummyHead = dummyHead.next;
+```js
+var removeElements = function (head, val) {
+  let dummyHead = new ListNode(null, head);
+  const result = dummyHead;
+  while (dummyHead) {
+    while (dummyHead.next && dummyHead.next.val === val) {
+      dummyHead.next = dummyHead.next.next;
     }
-    return result.next;
+    dummyHead = dummyHead.next;
+  }
+  return result.next;
 };
 ```
 
@@ -55,63 +55,62 @@ var removeElements = function(head, val) {
   - `void deleteAtIndex(int index)`: O(index)
 - Space Complexity: O(n)
 
-```
-
-function ListNode(val, next){
-    this.val = (val === undefined ? 0 : val);
-    this.next = (next === undefined ? null : next);
+```js
+function ListNode(val, next) {
+  this.val = val === undefined ? 0 : val;
+  this.next = next === undefined ? null : next;
 }
 
-var MyLinkedList = function() {
-    this.dummyHead = new ListNode();
-    this.length = 0;
+var MyLinkedList = function () {
+  this.dummyHead = new ListNode();
+  this.length = 0;
 };
 
 /**
  * @param {number} index
  * @return {number}
  */
-MyLinkedList.prototype.get = function(index) {
-    if(index >= this.length || index < 0){
-        return -1;
-    }
-    let root = this.dummyHead;
-    while(root && index >= 0){
-        root = root.next;
-        if(index == 0){
-            return root.val;
-        }
-        index--;
-    }
+MyLinkedList.prototype.get = function (index) {
+  if (index >= this.length || index < 0) {
     return -1;
-};
-
-/**
- * @param {number} val
- * @return {void}
- */
-MyLinkedList.prototype.addAtHead = function(val) {
-    const next = this.dummyHead.next;
-    const newHead = new ListNode(val, next);
-    this.dummyHead.next = newHead;
-    this.length++;
-};
-
-/**
- * @param {number} val
- * @return {void}
- */
-MyLinkedList.prototype.addAtTail = function(val) {
-    const newEnd = new ListNode(val);
-    let root = this.dummyHead;
-    while(root){
-        if(!root.next){
-            root.next= newEnd;
-            break;
-        }
-        root = root.next;
+  }
+  let root = this.dummyHead;
+  while (root && index >= 0) {
+    root = root.next;
+    if (index == 0) {
+      return root.val;
     }
-    this.length++;
+    index--;
+  }
+  return -1;
+};
+
+/**
+ * @param {number} val
+ * @return {void}
+ */
+MyLinkedList.prototype.addAtHead = function (val) {
+  const next = this.dummyHead.next;
+  const newHead = new ListNode(val, next);
+  this.dummyHead.next = newHead;
+  this.length++;
+};
+
+/**
+ * @param {number} val
+ * @return {void}
+ */
+MyLinkedList.prototype.addAtTail = function (val) {
+  const newEnd = new ListNode(val);
+  let root = this.dummyHead;
+  while (root) {
+    if (!root.next) {
+      root.next = newEnd;
+      break;
+    }
+    root = root.next;
+  }
+  this.length++;
 };
 
 /**
@@ -119,45 +118,44 @@ MyLinkedList.prototype.addAtTail = function(val) {
  * @param {number} val
  * @return {void}
  */
-MyLinkedList.prototype.addAtIndex = function(index, val) {
-    if(index > this.length){
-        return;
-    }else if(index == this.length){
-        this.addAtTail(val);
-    }else if(index == 0){
-        this.addAtHead(val);
-    }else{
-        let root = this.dummyHead;
-        while(root && index > 0){
-            root = root.next;
-            index--;
-            if(index === 0){
-                const newNode = new ListNode(val, root.next);
-                root.next = newNode;
-            }
-        }
-        this.length++;
+MyLinkedList.prototype.addAtIndex = function (index, val) {
+  if (index > this.length) {
+    return;
+  } else if (index == this.length) {
+    this.addAtTail(val);
+  } else if (index == 0) {
+    this.addAtHead(val);
+  } else {
+    let root = this.dummyHead;
+    while (root && index > 0) {
+      root = root.next;
+      index--;
+      if (index === 0) {
+        const newNode = new ListNode(val, root.next);
+        root.next = newNode;
+      }
     }
+    this.length++;
+  }
 };
 
 /**
  * @param {number} index
  * @return {void}
  */
-MyLinkedList.prototype.deleteAtIndex = function(index) {
-    if(index >= this.length) return;
-    let root = this.dummyHead;
-    while(root && index >= 0){
-        if(index === 0){
-            const needDelete = root.next;
-            const next = needDelete && needDelete.next ? needDelete.next : null;
-            root.next = next;
-        }
-        root = root.next;
-        index--;
+MyLinkedList.prototype.deleteAtIndex = function (index) {
+  if (index >= this.length) return;
+  let root = this.dummyHead;
+  while (root && index >= 0) {
+    if (index === 0) {
+      const needDelete = root.next;
+      const next = needDelete && needDelete.next ? needDelete.next : null;
+      root.next = next;
     }
-    this.length--;
-
+    root = root.next;
+    index--;
+  }
+  this.length--;
 };
 
 /**
@@ -184,15 +182,15 @@ MyLinkedList.prototype.deleteAtIndex = function(index) {
   - Time Complexity: O(n)
   - Space Complexity: O(n): since need to create new ListNode in every loop
 
-```
-var reverseList = function(head) {
-    let dummyHead = new ListNode();
-    while(head){
-        const next = dummyHead.next;
-        dummyHead.next = new ListNode(head.val, next);
-        head = head.next;
-    }
-    return dummyHead.next;
+```js
+var reverseList = function (head) {
+  let dummyHead = new ListNode();
+  while (head) {
+    const next = dummyHead.next;
+    dummyHead.next = new ListNode(head.val, next);
+    head = head.next;
+  }
+  return dummyHead.next;
 };
 ```
 
@@ -202,18 +200,18 @@ var reverseList = function(head) {
   - Time Complexity: O(n)
   - Space Complexity: O(1): only declare temp, prev, curr once
 
-```
-var reverseList = function(head) {
-    if(!head || !head.next) return head;
-    let temp = null
-    let prev = null
-    let curr = head;
-    while(curr){
-        temp = curr.next;
-        curr.next = prev;
-        prev = curr;
-        curr = temp;
-    }
-    return prev;
+```js
+var reverseList = function (head) {
+  if (!head || !head.next) return head;
+  let temp = null;
+  let prev = null;
+  let curr = head;
+  while (curr) {
+    temp = curr.next;
+    curr.next = prev;
+    prev = curr;
+    curr = temp;
+  }
+  return prev;
 };
 ```

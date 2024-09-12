@@ -23,22 +23,22 @@ categories:
 - Time Complexity: O(n)
 - Space Complexity: O(1)
 
-```
-var swapPairs = function(head) {
-    if(!head || !head.next) return head;
-    let dummyHead = new ListNode(null, head);
-    let res = dummyHead;
-    while(dummyHead && dummyHead.next){
-        const second = dummyHead.next.next;
-        if(!second){
-            break;
-        }
-        dummyHead.next.next = second.next;
-        second.next = dummyHead.next;
-        dummyHead.next = second;
-        dummyHead = dummyHead.next.next;
+```js
+var swapPairs = function (head) {
+  if (!head || !head.next) return head;
+  let dummyHead = new ListNode(null, head);
+  let res = dummyHead;
+  while (dummyHead && dummyHead.next) {
+    const second = dummyHead.next.next;
+    if (!second) {
+      break;
     }
-    return res.next;
+    dummyHead.next.next = second.next;
+    second.next = dummyHead.next;
+    dummyHead.next = second;
+    dummyHead = dummyHead.next.next;
+  }
+  return res.next;
 };
 ```
 
@@ -54,26 +54,26 @@ var swapPairs = function(head) {
 - Time Complexity: O(n)
 - Space Complexity: O(1)
 
-```
-var removeNthFromEnd = function(head, n) {
-    let slow = head;
-    let fast = head;
-    while(n>0 && fast){
-        fast = fast.next;
-        n--;
+```js
+var removeNthFromEnd = function (head, n) {
+  let slow = head;
+  let fast = head;
+  while (n > 0 && fast) {
+    fast = fast.next;
+    n--;
+  }
+  if (!fast) {
+    return slow.next;
+  }
+  while (fast) {
+    if (!fast.next) {
+      slow.next = slow.next.next;
+      break;
     }
-    if(!fast){
-        return slow.next;
-    }
-    while(fast){
-        if(!fast.next){
-            slow.next = slow.next.next;
-            break;
-        }
-        slow = slow.next;
-        fast = fast.next;
-    }
-    return head;
+    slow = slow.next;
+    fast = fast.next;
+  }
+  return head;
 };
 ```
 
@@ -88,37 +88,37 @@ var removeNthFromEnd = function(head, n) {
 - Time Complexity: O(n+m)
 - Space Complexity: O(1)
 
-```
-var getIntersectionNode = function(headA, headB) {
-    let lengthA = 0;
-    let lengthB = 0;
-    let rootA = headA;
-    let rootB = headB;
-    while(rootA){
-        lengthA++;
-        rootA = rootA.next;
+```js
+var getIntersectionNode = function (headA, headB) {
+  let lengthA = 0;
+  let lengthB = 0;
+  let rootA = headA;
+  let rootB = headB;
+  while (rootA) {
+    lengthA++;
+    rootA = rootA.next;
+  }
+  while (rootB) {
+    lengthB++;
+    rootB = rootB.next;
+  }
+  if (lengthA > lengthB) {
+    [lengthA, lengthB] = [lengthB, lengthA];
+    [headA, headB] = [headB, headA];
+  }
+  let diff = lengthB - lengthA;
+  while (diff > 0) {
+    headB = headB.next;
+    diff--;
+  }
+  while (headA && headB) {
+    if (headA === headB) {
+      return headA;
     }
-    while(rootB){
-        lengthB++;
-        rootB = rootB.next;
-    }
-    if(lengthA > lengthB){
-        [lengthA, lengthB] = [lengthB, lengthA];
-        [headA, headB] = [headB, headA];
-    }
-    let diff = lengthB - lengthA;
-    while(diff > 0){
-        headB = headB.next;
-        diff--;
-    }
-    while(headA && headB){
-        if(headA === headB){
-            return headA;
-        }
-        headA = headA.next;
-        headB = headB.next;
-    }
-    return null;
+    headA = headA.next;
+    headB = headB.next;
+  }
+  return null;
 };
 ```
 
@@ -134,24 +134,24 @@ var getIntersectionNode = function(headA, headB) {
 - Time Complexity: O(n)
 - Space Complexity: O(1)
 
-```
-var detectCycle = function(head) {
-    if(!head || !head.next){
-        return null;
-    }
-    let slow = head.next;
-    let fast = head.next.next;
-    while(fast && fast.next && slow && fast !== slow){
-        slow = slow.next;
-        fast = fast.next.next;
-    }
-    while(head && slow){
-        if(head === slow){
-            return head;
-        }
-        head = head.next;
-        slow = slow.next;
-    }
+```js
+var detectCycle = function (head) {
+  if (!head || !head.next) {
     return null;
+  }
+  let slow = head.next;
+  let fast = head.next.next;
+  while (fast && fast.next && slow && fast !== slow) {
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+  while (head && slow) {
+    if (head === slow) {
+      return head;
+    }
+    head = head.next;
+    slow = slow.next;
+  }
+  return null;
 };
 ```

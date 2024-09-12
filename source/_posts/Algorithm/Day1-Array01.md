@@ -62,23 +62,23 @@ var search = function(nums, target) {
 
 #### Iterate: left include, right exclude, [left, right)
 
-```
-var search = function(nums, target) {
-    let left = 0;
-    let right = nums.length;
-    // target will be in [left, right)
-    while(left < right){
-        let mid = Math.floor((left+right)/2);
-        let num = nums[mid];
-        if(num == target){
-            return mid;
-        }else if(num < target){
-            left = mid + 1;
-        }else{
-            right = mid;
-        }
+```js
+var search = function (nums, target) {
+  let left = 0;
+  let right = nums.length;
+  // target will be in [left, right)
+  while (left < right) {
+    let mid = Math.floor((left + right) / 2);
+    let num = nums[mid];
+    if (num == target) {
+      return mid;
+    } else if (num < target) {
+      left = mid + 1;
+    } else {
+      right = mid;
     }
-    return -1;
+  }
+  return -1;
 };
 ```
 
@@ -122,21 +122,21 @@ function recusive(nums, target, left, right){
 
 #### Slow pointer and fast pointer
 
-```
+```js
 // fast pointer will find the non-target first
 // slow will still be target item, since slow only move when fast find the non-target item
 // swap
-var removeElement = function(nums, val) {
-    let slow = 0;
-    for(let fast = 0; fast < nums.length; fast++){
-        // when fast pointer to the item not target, slow still pointer to the target
-        if(nums[fast] !== val){
-            nums[slow] = nums[fast];
-            slow++;
-        }
+var removeElement = function (nums, val) {
+  let slow = 0;
+  for (let fast = 0; fast < nums.length; fast++) {
+    // when fast pointer to the item not target, slow still pointer to the target
+    if (nums[fast] !== val) {
+      nums[slow] = nums[fast];
+      slow++;
     }
-    return slow;
-}
+  }
+  return slow;
+};
 ```
 
 #### Two pointer, 0 and nums.length-1
@@ -145,29 +145,29 @@ var removeElement = function(nums, val) {
   - For the while inside while, need check whether break the outside while condition
   - After while, nums[right] == val or !== are two cases
 
-```
-var removeElement = function(nums, val) {
-    let left = 0;
-    let right = nums.length - 1;
-    while(left < right){
-        while(nums[right] == val){
-            right--;
-            if(left >= right){
-                break;
-            }
-        }
-        if(nums[left] !== val){
-            left++;
-        }else{
-            [nums[left], nums[right]]=[nums[right], nums[left]];
-            left++;
-            right--;
-        }
+```js
+var removeElement = function (nums, val) {
+  let left = 0;
+  let right = nums.length - 1;
+  while (left < right) {
+    while (nums[right] == val) {
+      right--;
+      if (left >= right) {
+        break;
+      }
     }
+    if (nums[left] !== val) {
+      left++;
+    } else {
+      [nums[left], nums[right]] = [nums[right], nums[left]];
+      left++;
+      right--;
+    }
+  }
 
-    if(nums[right] == val){
-        return right;
-    }
-    return right+1;
+  if (nums[right] == val) {
+    return right;
+  }
+  return right + 1;
 };
 ```

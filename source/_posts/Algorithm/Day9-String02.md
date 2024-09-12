@@ -25,52 +25,56 @@ categories:
 - Time Complexity: O(n)
 - Space Complexity: O(n)
 
-```
-var reverseWords = function(s){
-    const strArr = Array.from(s);
-    // remove the extra space, O(n)
-    removeSpace(strArr);
-    // reverse the whole sentenc, O(n)
-    reverse(strArr, 0, strArr.length-1);
+```js
+var reverseWords = function (s) {
+  const strArr = Array.from(s);
+  // remove the extra space, O(n)
+  removeSpace(strArr);
+  // reverse the whole sentenc, O(n)
+  reverse(strArr, 0, strArr.length - 1);
 
-    let startIndex = 0;
-    // loop is O(n), reverse every word is constant, total is still O(n)
-    for(let i = 0; i <= strArr.length; i++){
-        if(strArr[i] === " " || i === strArr.length){
-            reverse(strArr, startIndex, i-1);
-            startIndex = i+1;
-        }
+  let startIndex = 0;
+  // loop is O(n), reverse every word is constant, total is still O(n)
+  for (let i = 0; i <= strArr.length; i++) {
+    if (strArr[i] === " " || i === strArr.length) {
+      reverse(strArr, startIndex, i - 1);
+      startIndex = i + 1;
     }
-    return strArr.join("");
-}
+  }
+  return strArr.join("");
+};
 
-var removeSpace = function(strArr){
-    let slowIndex = 0, fastIndex = 0;
-    // remove the space at begin and in the middle
-    while(fastIndex < strArr.length){
-        if(strArr[fastIndex] === " " && (fastIndex === 0 || strArr[fastIndex-1] === " ")){
-            fastIndex++;
-        }else{
-            strArr[slowIndex] = strArr[fastIndex];
-            slowIndex++;
-            fastIndex++;
-        }
+var removeSpace = function (strArr) {
+  let slowIndex = 0,
+    fastIndex = 0;
+  // remove the space at begin and in the middle
+  while (fastIndex < strArr.length) {
+    if (
+      strArr[fastIndex] === " " &&
+      (fastIndex === 0 || strArr[fastIndex - 1] === " ")
+    ) {
+      fastIndex++;
+    } else {
+      strArr[slowIndex] = strArr[fastIndex];
+      slowIndex++;
+      fastIndex++;
     }
-    // remove the space at end
-    if(strArr[slowIndex-1] === " "){
-        strArr.length = slowIndex - 1;
-    }else{
-        strArr.length = slowIndex;
-    }
-}
+  }
+  // remove the space at end
+  if (strArr[slowIndex - 1] === " ") {
+    strArr.length = slowIndex - 1;
+  } else {
+    strArr.length = slowIndex;
+  }
+};
 
-var reverse = function(strArr, start, end){
-    while(start <  end){
-        [strArr[start], strArr[end]] = [strArr[end], strArr[start]];
-        start++;
-        end--;
-    }
-}
+var reverse = function (strArr, start, end) {
+  while (start < end) {
+    [strArr[start], strArr[end]] = [strArr[end], strArr[start]];
+    start++;
+    end--;
+  }
+};
 ```
 
 ## 28. Find the Index of the First Occurrence in a String
@@ -91,65 +95,65 @@ var reverse = function(strArr, start, end){
 
 #### Brute force
 
-```
+```js
 // length of haystack is n
 // length of needle is m
 // Time Complexity: O(n^2)
 // Space Complexity: O(m)
-var strStr = function(haystack, needle) {
-    if(needle.length > haystack.length){
-        return -1;
-    }
-    //loop: O(n - m + 1), slice in every loop is O(m), comparison(===) is O(m)
-    for(let i = 0; i < haystack.length - needle.length + 1; i++){
-        const str = haystack.slice(i, needle.length + i);
-        if(str === needle){
-            return i;
-        }
-    }
+var strStr = function (haystack, needle) {
+  if (needle.length > haystack.length) {
     return -1;
+  }
+  //loop: O(n - m + 1), slice in every loop is O(m), comparison(===) is O(m)
+  for (let i = 0; i < haystack.length - needle.length + 1; i++) {
+    const str = haystack.slice(i, needle.length + i);
+    if (str === needle) {
+      return i;
+    }
+  }
+  return -1;
 };
 ```
 
 #### KMP
 
-```
+```js
 // length of haystack is n
 // length of needle is m
-var strStr = function(haystack, needle){
-    // O(m)
-    function getNext(needle){
-        const next = [];
-        let j = 0;
-        next.push(j);
-        for(let i = 1; i < needle.length; i++){
-            while( j > 0 && needle[i] !== needle[j]){
-                j = next[j-1];
-            }
-            if(needle[i] === needle[j]){
-                j++;
-            }
-            next.push(j);
-        }
-        return next;
-    }
-    // get the arr for the longest same prefix and suffix for arr[0] to arr[i]
-    const next = getNext(needle);
+var strStr = function (haystack, needle) {
+  // O(m)
+  function getNext(needle) {
+    const next = [];
     let j = 0;
-    // O(n)
-    for(let i = 0; i < haystack.length; i++){
-        while( j > 0 && haystack[i] !== needle[j]){
-            j = next[j-1];
-        }
-        if(haystack[i] === needle[j]){
-            j++;
-        }
-        if(j === needle.length){
-            return i+1 - needle.length;
-        }
+    next.push(j);
+    for (let i = 1; i < needle.length; i++) {
+      while (j > 0 && needle[i] !== needle[j]) {
+        j = next[j - 1];
+      }
+      if (needle[i] === needle[j]) {
+        j++;
+      }
+      next.push(j);
     }
-    return -1;
-}
+    return next;
+  }
+  // get the arr for the longest same prefix and suffix for arr[0] to arr[i]
+  const next = getNext(needle);
+  let j = 0;
+  // O(n)
+  for (let i = 0; i < haystack.length; i++) {
+    while (j > 0 && haystack[i] !== needle[j]) {
+      j = next[j - 1];
+    }
+    if (haystack[i] === needle[j]) {
+      j++;
+    }
+    if (j === needle.length) {
+      return i + 1 - needle.length;
+    }
+  }
+  return -1;
+};
 ```
 
 ## 459. Repeated Substring Pattern
@@ -169,44 +173,45 @@ var strStr = function(haystack, needle){
 - Time Complexity: O(n)
 - Space Complexity: O(n)
 
-```combine two s to s+s, and s+s.includes(s)
+```js
+//combine two s to s+s, and s+s.includes(s)
 // Time Complexity: O(n)
 // Space Complexity: O(n)
-var repeatedSubstringPattern = function(s) {
-    // O(n)
-    const doubleS = (s+s).slice(1, s.length*2 - 1);
-    // O(n)
-    if(doubleS.includes(s)){
-        return true;
-    }else{
-        return false;
-    }
+var repeatedSubstringPattern = function (s) {
+  // O(n)
+  const doubleS = (s + s).slice(1, s.length * 2 - 1);
+  // O(n)
+  if (doubleS.includes(s)) {
+    return true;
+  } else {
+    return false;
+  }
 };
 ```
 
-```
-var repeatedSubstringPattern = function(s) {
-    const next = [];
-    let j = 0;
+```js
+var repeatedSubstringPattern = function (s) {
+  const next = [];
+  let j = 0;
+  next.push(j);
+  for (let i = 1; i < s.length; i++) {
+    while (j > 0 && s[j] !== s[i]) {
+      j = next[j - 1];
+    }
+    if (s[j] === s[i]) {
+      j++;
+    }
     next.push(j);
-    for(let i = 1; i < s.length; i++){
-        while(j > 0 && s[j] !== s[i]){
-            j = next[j-1];
-        }
-        if(s[j] === s[i]){
-            j++;
-        }
-        next.push(j);
+  }
+  const longestSamePrefixSuffix = next[next.length - 1];
+  if (longestSamePrefixSuffix == 0) {
+    return false;
+  } else {
+    if (s.length % (s.length - longestSamePrefixSuffix) === 0) {
+      return true;
+    } else {
+      return false;
     }
-    const longestSamePrefixSuffix = next[next.length-1];
-    if(longestSamePrefixSuffix == 0){
-        return false;
-    }else{
-        if(s.length % (s.length - longestSamePrefixSuffix) === 0){
-            return true;
-        }else{
-            return false;
-        }
-    }
+  }
 };
 ```

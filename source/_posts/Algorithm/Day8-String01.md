@@ -20,7 +20,7 @@ categories:
 - Time Complexity: O(n)
 - Space Complexity: O(1)
 
-```
+```js
 var reverseString = function(s) {
     let start = 0;
     let end = s.length - 1;
@@ -57,7 +57,7 @@ var reverseString = function(s) {
 - Time Complexity: O(n)
 - Space Complexity: O(1)
 
-```
+```js
 var reverseStr = function(s, k) {
     let start = 0;
     let end = start + k-1;

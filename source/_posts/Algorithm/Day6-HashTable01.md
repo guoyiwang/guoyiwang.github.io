@@ -21,7 +21,7 @@ categories:
   - map's size is determined by the number of unique characters in "s", which max is 26
   - map's size is constant and not grow up with the size of input "s"
 
-```
+```js
 var isAnagram = function(s, t) {
     if(s.length !== t.length) return false;
     const map = {};
@@ -52,7 +52,7 @@ var isAnagram = function(s, t) {
 - Time Complexity: O(n+m)
 - Space Complexity: O(n)
 
-```
+```js
 var intersection = function(nums1, nums2) {
     const nums1Set = new Set(nums1);
     const res = new Set();
@@ -70,7 +70,7 @@ var intersection = function(nums1, nums2) {
 ### Node:
 - Key: there will be same number(n) if it will be a endless loop
 - getSum
-    ```
+    ```js
     const getSum = (n)=>{
         let sum = 0;
         while(n>0){
@@ -97,7 +97,7 @@ var intersection = function(nums1, nums2) {
 - isHappy: will be called a maximum of 9^2 per digit. This is the max we can store in the hash set before we find a cycle or terminate.
 
 Use Recursive
-```
+```js
 var isHappy = function(n) {
     let cache = new Map();
     function count(n){
@@ -123,7 +123,7 @@ const getSum = (n)=>{
 ```
 
 Use while(true)
-```
+```js
 var isHappy = function(n) {
     let cache = new Map();
     // the count of loop is constant number
@@ -161,7 +161,7 @@ const getSum = (n)=>{
 - Time Complexity: O(n)
 - Space Complexity: O(n)
 
-```
+```js
 var twoSum = function(nums, target) {
     const map = {};
     let res = [];

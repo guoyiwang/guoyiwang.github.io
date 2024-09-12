@@ -21,7 +21,7 @@ categories:
 - Space Complexity: O(n^2)
   - The worse case, every sum from the `const sum = num1 + num2;` inside two layer loop are different every time
 
-```
+```js
 var fourSumCount = function(nums1, nums2, nums3, nums4) {
     const twoSumMap = new Map();;
     let count = 0;
@@ -62,7 +62,7 @@ var fourSumCount = function(nums1, nums2, nums3, nums4) {
   - There are only 26 letters
   - The size of map wouldn't increase when the input length incease
 
-```
+```js
 var canConstruct = function(ransomNote, magazine) {
     const map = {};
     for(const char of magazine){
@@ -105,7 +105,7 @@ var canConstruct = function(ransomNote, magazine) {
   - Inside, j and k will iterate the nums one round in total
 - Space Complexity: O(1)
 
-```
+```js
 var threeSum = function(nums) {
     nums.sort((a,b)=>a-b);
     const res = [];
@@ -156,7 +156,7 @@ var threeSum = function(nums) {
 - Time Complexity: O(n^3)
 - Space Complexity: O(1)
 
-```
+```js
 var fourSum = function(nums, target) {
     nums.sort((a,b) => a-b);
     const res = [];
