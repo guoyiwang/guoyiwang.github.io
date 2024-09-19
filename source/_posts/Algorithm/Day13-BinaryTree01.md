@@ -2,6 +2,12 @@
 title: Day13-BinaryTree01
 date: 2024-09-17 07:42:02
 tags:
+  - BinaryTree
+  - Preorder
+  - Inorder
+  - Postorder
+categories:
+  - Algorithm
 ---
 
 ## 144. Binary Tree Preorder Traversal
@@ -396,6 +402,8 @@ var connect = function (root) {
 
 #### 104. Maximum Depth of Binary Tree
 
+- BFS, queue
+
 ```js
 var maxDepth = function (root) {
   if (!root) return 0;
@@ -418,7 +426,27 @@ var maxDepth = function (root) {
 };
 ```
 
+- Recursive
+
+```js
+var maxDepth = function (root) {
+  if (!root) return 0;
+  if (!root.left && !root.right) {
+    return 1;
+  }
+  if (!root.left) {
+    return 1 + maxDepth(root.right);
+  }
+  if (!root.right) {
+    return 1 + maxDepth(root.left);
+  }
+  return 1 + Math.max(maxDepth(root.right), maxDepth(root.left));
+};
+```
+
 #### 111. Minimum Depth of Binary Tree
+
+- BFS, queue
 
 ```js
 var minDepth = function (root) {
@@ -444,4 +472,18 @@ var minDepth = function (root) {
   }
   return minDepth;
 };
+```
+
+- Recursive
+
+```
+var minDepth = function(root){
+    if(!root) return 0;
+    if(!root.left && !root.right){
+        return 1;
+    }
+    if(!root.left) return 1 + minDepth(root.right);
+    if(!root.right) return 1 + minDepth(root.left);
+    return 1 + Math.min(minDepth(root.left), minDepth(root.right));
+}
 ```
