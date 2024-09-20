@@ -1,7 +1,7 @@
 ---
 title: Day14-BinaryTree02
 date: 2024-09-18 22:20:47
-ttags:
+tags:
   - BinaryTree
 categories:
   - Algorithm
